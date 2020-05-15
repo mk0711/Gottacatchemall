@@ -16,7 +16,7 @@ Due to the time being, there is uncertainty and anxiety which makes some of us d
 ![data flow chart](./img/flowchart2.png)
 
 ### Summary of User Table
-|Priority| Header Two     | Header Two     |Header Two     |
+|Priority| User | Description | Technical implementation strategy |
 | :------------- | :------------- | :------------- |:------------- |
 |P0| As a player |As a player, I want to play games with my friends. |Search for username using GET request and send a battle request if  the username is matched. Upon clicking the battle request, a battle ensues. Store sessions in sql database.|
 |P0| As a player |As a user, I want to be able to log in to my account and continue where I left off. | Store log in credentials in database, authenticate user and store sessions inside Redis database.|
