@@ -1,0 +1,29 @@
+.Home .lander {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .Home .container h1 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+  }
+
+  .col-sm-8 {
+    height: 500px;
+    background-color:lightgrey;
+  }
+
+.col-sm-4 {
+  height: 500px;
+}
+
+.row {
+  margin-top: 50px;
+  text-align: bottom;
+}
+
+#message {
+  position: absolute;
+  right:    0;
+  bottom:   0;
+}
