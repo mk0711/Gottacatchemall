@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/mail"
 	"strings"
-	"crypto/md5"
-	"encoding/hex"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -42,7 +41,7 @@ type NewUser struct {
 type Updates struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
-	//password or email 
+	//password or email
 }
 
 //Validate validates the new user and returns an error if
@@ -86,7 +85,6 @@ func (nu *NewUser) ToUser() (*User, error) {
 	}
 	return user, nil
 }
-
 
 //FullName returns the user's full name, in the form:
 // "<FirstName> <LastName>"

@@ -39,8 +39,7 @@ func (mql *SQLStore) GetByID(id int64) (*User, error) {
 	return user, nil
 }
 
-
-//GetByEmail returns the user with the given email 
+//GetByEmail returns the user with the given email
 func (mql *SQLStore) GetByEmail(email string) (*User, error) {
 	rows, err := mql.db.Query("SELECT * FROM users WHERE email = ?", email)
 	if err != nil {
@@ -61,7 +60,7 @@ func (mql *SQLStore) GetByEmail(email string) (*User, error) {
 	return user, nil
 }
 
-//GetByUserName returns the user with the given username 
+//GetByUserName returns the user with the given username
 func (mql *SQLStore) GetByUserName(username string) (*User, error) {
 	rows, err := mql.db.Query("SELECT * FROM users WHERE userName = ?", username)
 	if err != nil {
@@ -99,7 +98,7 @@ func (mql *SQLStore) Insert(user *User) (*User, error) {
 	return user, nil
 }
 
-//Update applies UserUpdates to the given user ID and returns the newly updated user 
+//Update applies UserUpdates to the given user ID and returns the newly updated user
 func (mql *SQLStore) Update(id int64, updates *Updates) (*User, error) {
 	user, err := mql.GetByID(id)
 	if err != nil {
@@ -111,13 +110,13 @@ func (mql *SQLStore) Update(id int64, updates *Updates) (*User, error) {
 		return nil, fmt.Errorf("update failed")
 	}
 	return user, nil
- }
+}
 
- //Delete deltes the user with the given ID 
- func (mql *SQLStore) Delete(id int64) (err error) {
- 	_, err = mql.db.Exec("DELETE * FROM users WHERE id = ?", id)
- 	if err != nil {
- 		return ErrUserNotFound
-	 }
-	 return nil
- }
+//Delete deltes the user with the given ID
+func (mql *SQLStore) Delete(id int64) (err error) {
+	_, err = mql.db.Exec("DELETE * FROM users WHERE id = ?", id)
+	if err != nil {
+		return ErrUserNotFound
+	}
+	return nil
+}
