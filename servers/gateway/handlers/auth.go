@@ -211,14 +211,6 @@ func (context *HandlerContext) SessionHandler(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	// log successful user sign-in attempts
-	userLog := &users.UserLog{
-		ID:        user.ID,
-		StartAt:   time.Now(),
-		IPAddress: getUserIP(r),
-	}
-	context.UserStore.InsertUserLog(userLog)
-
 	// If authentication is successful, begin a new session
 	sessionState := &SessionState{
 		SigningKey: context.SigningKey,

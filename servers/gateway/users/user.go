@@ -122,7 +122,7 @@ func (u *User) Authenticate(password string) error {
 //is returned if the updates are invalid
 func (u *User) ApplyUpdates(updates *Updates) error {
 	if updates.FirstName == "" && updates.LastName == "" {
-		fmt.Errorf("no update")
+		fmt.Errorf("no update %s")
 	}
 	if len(updates.FirstName) > 0 && len(updates.LastName) == 0 {
 		u.FirstName = updates.FirstName

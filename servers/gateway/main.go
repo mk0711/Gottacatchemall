@@ -52,12 +52,12 @@ func main() {
 
 	hour, _ := time.ParseDuration("1h")
 	sessionStore := sessions.NewRedisStore(redisClient, hour)
-	userStore := users.NewSQLStore(dsn)
-	if userStore == nil {
+	userStore, error := users.NewSQLStore("mysql", dsn)
+	if error != nil {
 		log.Fatal("Error opening the database")
 	}
 	//ensure that the database gets closed when we are done
-	defer userStore.Database.Close()
+	defer userStore.Close()
 
 	context := &handlers.HandlerContext{
 		SigningKey:   sessionKey,
@@ -70,7 +70,6 @@ func main() {
 
 	// Tell the mux to call your handlers.SummaryHandler function
 	// when the "/v1/summary" URL path is requested.
-	mux.HandleFunc("/v1/summary", handlers.SummaryHandler)
 
 	mux.HandleFunc("/v1/users", context.UsersHandler)
 	mux.HandleFunc("/v1/users/", context.SpecificUserHandler)
