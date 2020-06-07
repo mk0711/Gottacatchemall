@@ -10,7 +10,6 @@ class Login extends Component {
       errorMessage: ""
     };
 
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);

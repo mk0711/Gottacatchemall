@@ -4,7 +4,7 @@ import "./Home.css";
 export default function Home() {
   return (
     <div className="Home">
-            Generate game here 
+            Display pokemons here 
     </div>
   );
 }
