@@ -15,11 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const express_1 = __importDefault(require("express"));
 const playerSchema_1 = require("./schemas/playerSchema");
+const battlePokemonSchema_1 = require("./schemas/battlePokemonSchema");
 const dexHandler_1 = require("./handlers/dexHandler");
 const specificDexHandler_1 = require("./handlers/specificDexHandler");
 const encounterHandler_1 = require("./handlers/encounterHandler");
 const catchHandler_1 = require("./handlers/catchHandler");
+const runAwayHandler_1 = require("./handlers/runAwayHandler");
 const inventoryHandler_1 = require("./handlers/inventoryHandler");
+const imageHandler_1 = require("./handlers/imageHandler");
+const teamHandler_1 = require("./handlers/teamHandler");
+const specificTeamHandler_1 = require("./handlers/specificTeamHandler");
 // const mongoContainerName = "441mongo";
 // const mongoEndpoint = "mongodb://" + mongoContainerName + ":27017/messaging";
 const mongoEndpoint = "mongodb://localhost:27017/test";
@@ -43,33 +48,33 @@ const RequestWrapper = (handler, SchemeAndDbForwarder) => {
 const methodNotAllowed = (request, response, next) => {
     response.status(405).send("Method not allowed!");
 };
-// // ChannelsHandlers
-// const Channel = mongoose.model("Channel", ChannelSchema);
-// const Message = mongoose.model("Message", MessageSchema);
-// return the current player's pokedex 
 app.route("/v1/pokedex")
     .get(RequestWrapper(dexHandler_1.getDexHandler, { PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
 app.route("/v1/pokedex/:pokemonName")
     .get(RequestWrapper(specificDexHandler_1.getSpecificDexHandler, { PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
+app.route("/v1/pokedex/image/:pokemonName")
+    .get(imageHandler_1.getImageHandler)
+    .all(methodNotAllowed);
 app.route("/v1/encounter")
-    .get(encounterHandler_1.getEncounterHandler)
+    .get(RequestWrapper(encounterHandler_1.getEncounterHandler, { PlayerModel: playerSchema_1.PlayerModel }))
+    .all(methodNotAllowed);
+app.route("/v1/runaway")
+    .get(RequestWrapper(runAwayHandler_1.runAwayHandler, { PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
 app.route("/v1/catch/:pokemonName")
-    .get(RequestWrapper(catchHandler_1.getCatchHandler, { PlayerModel: playerSchema_1.PlayerModel }))
+    .get(RequestWrapper(catchHandler_1.getCatchHandler, { PlayerModel: playerSchema_1.PlayerModel, BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
     .all(methodNotAllowed);
 app.route("/v1/inventory")
     .get(RequestWrapper(inventoryHandler_1.getInventoryHandler, { PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
-// app.route("/v1/pokedex/:pokemonName")
-// app.route("/v1/team")
-// app.route("/v1/team/:pokemonID")
-// app.route("/v1/inventory")
-// app.route("/v1/inventory?item={name}")
-// app.route("/v1/shop")
-// app.route("/v1/shop?item={name}")
-// app.route("/v1/catch/:pokemonName?ball=pokeball")
+app.route("/v1/team")
+    .get(RequestWrapper(teamHandler_1.getTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
+    .all(methodNotAllowed);
+app.route("/v1/team/:pokemonID")
+    .get(RequestWrapper(specificTeamHandler_1.getSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
+    .all(methodNotAllowed);
 // MongoDB connections
 const mongoDBConnect = () => {
     mongoose_1.default.connect(mongoEndpoint);

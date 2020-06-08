@@ -2,16 +2,16 @@ const { contentType, applicationJSON, XUser } = require("../header");
 import { Pokedex } from "../data/pokedex";
 import { Player } from "../player";
 
-export const getSpecificDexHandler = async (request, response, { PlayerDexModel }) => {
+export const getSpecificDexHandler = async (request, response, { PlayerModel }) => {
     // get the pokemon name from request param
     const pokemonName = request.params["pokemonName"];
 
     // if the user already caught the pokemon, then get its information
     const user = JSON.parse(request.header(XUser));
-    const pkmExistsInDex = await userHasPokemon(user, pokemonName, PlayerDexModel);
+    const pkmExistsInDex = await userHasPokemon(user, pokemonName, PlayerModel);
     if (!pkmExistsInDex) {
         // log out mongo's eror message if unable to get pkm
-        response.status(404).send("User never caught this pokemon.");
+        response.status(400).send("User never caught this pokemon.");
         return;
     }
 
@@ -20,7 +20,7 @@ export const getSpecificDexHandler = async (request, response, { PlayerDexModel 
         response.set(contentType, applicationJSON);
         response.status(200).json(pokemonData);
     } else {
-        response.status(404).send("Bad pokemon name");
+        response.status(400).send("Bad pokemon name");
     }
 }
 

@@ -1,21 +1,217 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Pokemon {
-    constructor(pokemonName) {
+const pokedex_1 = require("./data/pokedex");
+const learnset_1 = require("./data/learnset");
+;
+class BattlePokemon {
+    constructor(owner_id, pokemonName, pokemonObj) {
+        this.owner_id = owner_id;
         this.pokemonName = pokemonName;
+        if (pokemonObj === undefined) {
+            this.pokemonObj = this.initPokemonObj();
+        }
+        else {
+            this.pokemonObj = pokemonObj;
+        }
+    }
+    initPokemonObj() {
+        const IV = {
+            hp: this.getRandInt(31),
+            atk: this.getRandInt(31),
+            def: this.getRandInt(31),
+            spa: this.getRandInt(31),
+            spd: this.getRandInt(31),
+            spe: this.getRandInt(31)
+        };
+        const moves = this.getRandMovesOfPkmFromLearnset(this.pokemonName);
+        const level = 5;
+        const nature = this.getRandomNature();
+        const stats = this.statCalc();
+        return {
+            owner_id: this.owner_id,
+            level: level,
+            IV: IV,
+            nature: nature,
+            stats: stats,
+            moves: moves
+        };
+    }
+    getPokemonObj() {
+        return this.pokemonObj;
+    }
+    getRandMovesOfPkmFromLearnset(pokemonName) {
+        let moves = learnset_1.learnset[pokemonName];
+        if (moves.length <= 4) {
+            return moves;
+        }
+        this.shuffle(moves);
+        return moves.slice(0, 4);
+    }
+    shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+    getRandInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+    getRandomNature() {
+        const natures = ["hardy", "lonely", "brave", "adamant", "naughty", "bold", "docile", "relaxed",
+            "impish", "lax", "timid", "hasty", "serious", "jolly", "naive", "modest", "mild",
+            "quiet", "bashful", "rash", "calm", "gentle", "sassy", "careful", "quirky"];
+        return natures[this.getRandInt(natures.length - 1)];
+    }
+    statCalc() {
+        const baseHP = pokedex_1.Pokedex[this.pokemonName].baseStats.hp;
+        const baseATK = pokedex_1.Pokedex[this.pokemonName].baseStats.atk;
+        const baseDEF = pokedex_1.Pokedex[this.pokemonName].baseStats.def;
+        const baseSPA = pokedex_1.Pokedex[this.pokemonName].baseStats.spa;
+        const baseSPD = pokedex_1.Pokedex[this.pokemonName].baseStats.spd;
+        const baseSPE = pokedex_1.Pokedex[this.pokemonName].baseStats.spe;
+        const natureMultiplier = this.natureMultiplierCalculator(this.pokemonObj.nature);
+        // default
+        const EV = 84;
+        const level = this.pokemonObj.level;
+        const IV = this.pokemonObj.IV;
+        const hp = Math.floor((((2 * baseHP + IV.hp + EV / 4) * level) / 100) + level + 10);
+        const atk = this.otherStatCalc(baseATK, level, IV.atk, EV, natureMultiplier.atkNature);
+        const def = this.otherStatCalc(baseDEF, level, IV.def, EV, natureMultiplier.defNature);
+        const spa = this.otherStatCalc(baseSPA, level, IV.spa, EV, natureMultiplier.spaNature);
+        const spd = this.otherStatCalc(baseSPD, level, IV.spd, EV, natureMultiplier.spdNature);
+        const spe = this.otherStatCalc(baseSPE, level, IV.spe, EV, natureMultiplier.speNature);
+        return {
+            hp: hp,
+            atk: atk,
+            def: def,
+            spa: spa,
+            spd: spd,
+            spe: spe
+        };
+    }
+    natureMultiplierCalculator(nature) {
+        let atkNature = 1;
+        let defNature = 1;
+        let spaNature = 1;
+        let spdNature = 1;
+        let speNature = 1;
+        console.log(nature);
+        switch (nature) {
+            case ("adamant"): {
+                atkNature = 1.1;
+                spaNature = 0.9;
+                break;
+            }
+            case ("bold"): {
+                defNature = 1.1;
+                speNature = 0.9;
+                break;
+            }
+            case ("brave"): {
+                atkNature = 1.1;
+                speNature = 0.9;
+                break;
+            }
+            case ("calm"): {
+                spdNature = 1.1;
+                atkNature = 0.9;
+                break;
+            }
+            case ("careful"): {
+                spdNature = 1.1;
+                spaNature = 0.9;
+                break;
+            }
+            case ("gentle"): {
+                spdNature = 1.1;
+                defNature = 0.9;
+                break;
+            }
+            case ("hasty"): {
+                speNature = 1.1;
+                defNature = 0.9;
+                break;
+            }
+            case ("impish"): {
+                defNature = 1.1;
+                spaNature = 0.9;
+                break;
+            }
+            case ("jolly"): {
+                speNature = 1.1;
+                spaNature = 0.9;
+                break;
+            }
+            case ("lax"): {
+                defNature = 1.1;
+                spdNature = 0.9;
+                break;
+            }
+            case ("lonely"): {
+                speNature = 1.1;
+                defNature = 0.9;
+                break;
+            }
+            case ("mild"): {
+                spaNature = 1.1;
+                defNature = 0.9;
+                break;
+            }
+            case ("modest"): {
+                spaNature = 1.1;
+                atkNature = 0.9;
+                break;
+            }
+            case ("naive"): {
+                speNature = 1.1;
+                spdNature = 0.9;
+                break;
+            }
+            case ("naughty"): {
+                atkNature = 1.1;
+                spdNature = 0.9;
+                break;
+            }
+            case ("quiet"): {
+                spaNature = 1.1;
+                speNature = 0.9;
+                break;
+            }
+            case ("rash"): {
+                spaNature = 1.1;
+                spdNature = 0.9;
+                break;
+            }
+            case ("relaxed"): {
+                defNature = 1.1;
+                speNature = 0.9;
+                break;
+            }
+            case ("sassy"): {
+                spdNature = 1.1;
+                speNature = 0.9;
+                break;
+            }
+            case ("timid"): {
+                speNature = 1.1;
+                atkNature = 0.9;
+                break;
+            }
+        }
+        return {
+            atkNature: atkNature,
+            defNature: defNature,
+            spaNature: spaNature,
+            spdNature: spdNature,
+            speNature: speNature
+        };
+    }
+    otherStatCalc(base, level, IV, EV, natureMultiplier) {
+        return Math.floor(((((2 * base + IV + (EV / 4)) * level) / 100) + 5) * natureMultiplier);
     }
 }
-exports.Pokemon = Pokemon;
-class PokemonStat {
-    constructor(hp, atk, def, spAtk, spDef, speed) {
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
-        this.spAtk = spAtk;
-        this.spDef = spDef;
-        this.speed = speed;
-    }
-}
+exports.BattlePokemon = BattlePokemon;
 class PokemonMove {
     constructor(name, basePower, accuracy, type, category, pp) {
         this.name = name;
@@ -81,64 +277,4 @@ class TypeChart {
         return typeMap;
     }
 }
-const testPokemonSnorlax = {
-    species: "snorlax",
-    stat: {
-        hp: 160,
-        atk: 110,
-        def: 65,
-        spAtk: 65,
-        spDef: 110,
-        speed: 30
-    },
-    moveSet: [
-        {
-            name: "body slam",
-            basePower: 75,
-            accuracy: 100,
-            type: "normal",
-            category: "physical",
-            pp: 24
-        },
-        {
-            name: "earthquake",
-            basePower: 100,
-            accuracy: 100,
-            type: "ground",
-            category: "physical",
-            pp: 16
-        }
-    ],
-    catchRate: 0.1,
-    sprite: "https://img.pokemondb.net/sprites/ruby-sapphire/normal/snorlax.png"
-};
-const user = {
-    username: "npham24",
-    money: 100,
-    inventory: {
-        "pokeball": 10,
-        "greatball": 10,
-        "ultraball": 10
-    },
-    mainPokemon: {
-        species: "snorlax",
-        nickname: "fatty",
-        nature: "adamant",
-        moveSet: [
-            {
-                name: "body slam"
-            },
-            {
-                name: "earthquake"
-            }
-        ],
-        sprite: "https://img.pokemondb.net/sprites/ruby-sapphire/normal/snorlax.png"
-    },
-    pokedex: [
-        "bulbasaur",
-        "ivysaur",
-        "venusaur",
-        "snorlax"
-    ]
-};
 //# sourceMappingURL=pokemon.js.map

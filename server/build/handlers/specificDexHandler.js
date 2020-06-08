@@ -12,15 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const { contentType, applicationJSON, XUser } = require("../header");
 const pokedex_1 = require("../data/pokedex");
 const player_1 = require("../player");
-exports.getSpecificDexHandler = (request, response, { PlayerDexModel }) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getSpecificDexHandler = (request, response, { PlayerModel }) => __awaiter(void 0, void 0, void 0, function* () {
     // get the pokemon name from request param
     const pokemonName = request.params["pokemonName"];
     // if the user already caught the pokemon, then get its information
     const user = JSON.parse(request.header(XUser));
-    const pkmExistsInDex = yield userHasPokemon(user, pokemonName, PlayerDexModel);
+    const pkmExistsInDex = yield userHasPokemon(user, pokemonName, PlayerModel);
     if (!pkmExistsInDex) {
         // log out mongo's eror message if unable to get pkm
-        response.status(404).send("User never caught this pokemon.");
+        response.status(400).send("User never caught this pokemon.");
         return;
     }
     const pokemonData = pokedex_1.Pokedex[pokemonName.toLowerCase()];
@@ -29,7 +29,7 @@ exports.getSpecificDexHandler = (request, response, { PlayerDexModel }) => __awa
         response.status(200).json(pokemonData);
     }
     else {
-        response.status(404).send("Bad pokemon name");
+        response.status(400).send("Bad pokemon name");
     }
 });
 function userHasPokemon(user, pokemonName, PlayerModel) {

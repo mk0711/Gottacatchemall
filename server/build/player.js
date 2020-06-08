@@ -15,18 +15,21 @@ class Player {
     constructor(id, PlayerModel) {
         this.id = id;
         this.queryPlayerObj = () => __awaiter(this, void 0, void 0, function* () {
-            return yield this.queryPlayerObjHelper(this.dbModel);
+            yield this.queryPlayerObjHelper(this.dbModel);
         });
         this.queryPlayerObjHelper = (PlayerModel) => __awaiter(this, void 0, void 0, function* () {
-            let playerObj = yield PlayerModel.findById(this.id);
+            this.playerObj = yield PlayerModel.findById(this.id);
             // if this user has never been found in the db then create a new user
-            if (!playerObj) {
+            if (!this.playerObj) {
                 this.dex = new PlayerPokedex(null);
                 this.balls = new BallInventory(null);
                 const newPlayerObj = {
                     _id: this.id,
                     dex: this.dex.getCaughtDex(),
                     balls: this.balls.getBallInventory(),
+                    encounter: {
+                        isEncountering: false
+                    }
                 };
                 const query = new PlayerModel(newPlayerObj);
                 yield query.save((err) => {
@@ -35,12 +38,12 @@ class Player {
                     }
                     return;
                 });
+                this.playerObj = newPlayerObj;
             }
             else {
-                this.dex = new PlayerPokedex(playerObj.dex);
-                this.balls = new BallInventory(playerObj.balls);
+                this.dex = new PlayerPokedex(this.playerObj.dex);
+                this.balls = new BallInventory(this.playerObj.balls);
             }
-            return playerObj;
         });
         this.team = [];
         this.balls = undefined;
@@ -53,13 +56,17 @@ class Player {
     }
     getDex() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryPlayerObj();
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
             return this.dex.getCaughtDex();
         });
     }
     getInventory() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryPlayerObj();
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
             return {
                 balls: this.balls.getBallInventory(),
                 items: []
@@ -68,20 +75,29 @@ class Player {
     }
     hasBall(ballName) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.queryPlayerObj();
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
             return this.balls.hasBall(ballName);
         });
     }
     useBallToCatch(ballName, pokemonName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let playerObj = yield this.queryPlayerObj();
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
             this.balls.removeBall(ballName);
-            playerObj.balls = this.balls.getBallInventory();
+            this.playerObj.balls = this.balls.getBallInventory();
+            this.playerObj.markModified("balls");
             this.dex.addPokemonToDex(pokemonName.toLowerCase());
-            playerObj.dex = this.dex.getCaughtDex();
-            playerObj.markModified("dex");
-            playerObj.markModified("balls");
-            yield playerObj.save((err) => {
+            this.playerObj.dex = this.dex.getCaughtDex();
+            this.playerObj.markModified("dex");
+            // player caught the pokemon so they no longer is encountering it
+            this.playerObj.encounter = {
+                isEncountering: false
+            };
+            this.playerObj.markModified("encounter");
+            yield this.playerObj.save((err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -91,11 +107,14 @@ class Player {
     }
     useBallFailToCatch(ballName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let playerObj = yield this.queryPlayerObj();
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
             this.balls.removeBall(ballName);
-            playerObj.balls = this.balls.getBallInventory();
-            playerObj.markModified("balls");
-            yield playerObj.save((err) => {
+            this.playerObj.balls = this.balls.getBallInventory();
+            this.playerObj.markModified("balls");
+            // let's say the pokemon doesn't run away after a failed capture for now
+            yield this.playerObj.save((err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -103,11 +122,68 @@ class Player {
             });
         });
     }
+    setEncounter(pokemonName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            this.playerObj.encounter = {
+                isEncountering: true,
+                pokemonName: pokemonName
+            };
+            this.playerObj.markModified("encounter");
+            yield this.playerObj.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                return;
+            });
+        });
+    }
+    runAwayFromEncounter() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            this.playerObj.encounter = {
+                isEncountering: false,
+                pokemonName: undefined
+            };
+            this.playerObj.markModified("encounter");
+            yield this.playerObj.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                return;
+            });
+        });
+    }
+    isAlreadyInEncounter() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            if (!this.playerObj.encounter) {
+                return false;
+            }
+            return this.playerObj.encounter.isEncountering;
+        });
+    }
+    getCurrentEncounter() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            if (!this.playerObj.encounter) {
+                return undefined;
+            }
+            return this.playerObj.encounter.pokemonName;
+        });
+    }
     hasPokemonInDex(pokemonName) {
         return __awaiter(this, void 0, void 0, function* () {
-            // return await this.hasPokemonInDexHelper(pokemonName.toLowerCase(), this.dbModel);
             if (!this.playerObj) {
-                this.playerObj = yield this.queryPlayerObj();
+                yield this.queryPlayerObj();
             }
             return this.playerObj.dex[pokemonName.toLowerCase()];
         });

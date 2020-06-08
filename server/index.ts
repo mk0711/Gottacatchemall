@@ -3,12 +3,17 @@
 import mongoose from "mongoose";
 import express from "express";
 import { PlayerModel } from "./schemas/playerSchema";
+import { BattlePokemonModel } from "./schemas/battlePokemonSchema";
 
 import { getDexHandler } from "./handlers/dexHandler";
 import { getSpecificDexHandler } from "./handlers/specificDexHandler"
 import { getEncounterHandler } from "./handlers/encounterHandler";
 import { getCatchHandler } from "./handlers/catchHandler";
+import { runAwayHandler } from "./handlers/runAwayHandler";
 import { getInventoryHandler } from "./handlers/inventoryHandler";
+import { getImageHandler } from "./handlers/imageHandler";
+import { getTeamHandler } from "./handlers/teamHandler";
+import { getSpecificTeamHandler } from "./handlers/specificTeamHandler";
 
 // const mongoContainerName = "441mongo";
 // const mongoEndpoint = "mongodb://" + mongoContainerName + ":27017/messaging";
@@ -39,11 +44,6 @@ const methodNotAllowed = (request, response, next) => {
     response.status(405).send("Method not allowed!");
 }
 
-// // ChannelsHandlers
-// const Channel = mongoose.model("Channel", ChannelSchema);
-// const Message = mongoose.model("Message", MessageSchema);
-
-// return the current player's pokedex 
 app.route("/v1/pokedex")
     .get(RequestWrapper(getDexHandler, { PlayerModel }))
     .all(methodNotAllowed)
@@ -52,32 +52,33 @@ app.route("/v1/pokedex/:pokemonName")
     .get(RequestWrapper(getSpecificDexHandler, { PlayerModel }))
     .all(methodNotAllowed)
 
+app.route("/v1/pokedex/image/:pokemonName")
+    .get(getImageHandler)
+    .all(methodNotAllowed)
+
 app.route("/v1/encounter") 
-    .get(getEncounterHandler)
+    .get(RequestWrapper(getEncounterHandler, { PlayerModel }))
+    .all(methodNotAllowed)
+
+app.route("/v1/runaway")
+    .get(RequestWrapper(runAwayHandler, { PlayerModel }))
     .all(methodNotAllowed)
 
 app.route("/v1/catch/:pokemonName")
-    .get(RequestWrapper(getCatchHandler, { PlayerModel }))
+    .get(RequestWrapper(getCatchHandler, { PlayerModel, BattlePokemonModel }))
     .all(methodNotAllowed)
 
 app.route("/v1/inventory")
     .get(RequestWrapper(getInventoryHandler, { PlayerModel }))
     .all(methodNotAllowed)
 
+app.route("/v1/team")
+    .get(RequestWrapper(getTeamHandler, { BattlePokemonModel }))
+    .all(methodNotAllowed)
 
-// app.route("/v1/pokedex/:pokemonName")
-
-// app.route("/v1/team")
-// app.route("/v1/team/:pokemonID")
-
-// app.route("/v1/inventory")
-// app.route("/v1/inventory?item={name}")
-
-// app.route("/v1/shop")
-// app.route("/v1/shop?item={name}")
-
-// app.route("/v1/catch/:pokemonName?ball=pokeball")
-
+app.route("/v1/team/:pokemonID")
+    .get(RequestWrapper(getSpecificTeamHandler, { BattlePokemonModel }))
+    .all(methodNotAllowed)
 
 // MongoDB connections
 const mongoDBConnect = () => {

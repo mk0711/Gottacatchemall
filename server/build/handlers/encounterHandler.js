@@ -9,14 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const { contentType, applicationJSON, XUser } = require("../header");
+const { contentType, applicationJSON, XUser, textPlain } = require("../header");
 const random_pokemon_generator_1 = require("../misc/random-pokemon-generator");
-exports.getEncounterHandler = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+const player_1 = require("../player");
+exports.getEncounterHandler = (request, response, { PlayerModel }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const gacha = new random_pokemon_generator_1.PokemonGacha();
         const pulledPkm = gacha.pullRandomPokemon();
-        response.set(contentType, applicationJSON);
-        response.status(200).json(pulledPkm);
+        const user = JSON.parse(request.header(XUser));
+        const pid = user.id;
+        const player = new player_1.Player(pid, PlayerModel);
+        const playerAlreadyInEncounter = yield player.isAlreadyInEncounter();
+        if (playerAlreadyInEncounter) {
+            response.set(contentType, textPlain);
+            response.status(200).send("You are already encountering " + (yield player.getCurrentEncounter()));
+        }
+        else {
+            yield player.setEncounter(pulledPkm.pokemonName);
+            response.set(contentType, applicationJSON);
+            response.status(200).json(pulledPkm);
+        }
     }
     catch (e) {
         response.status(500).send("Error: " + e);

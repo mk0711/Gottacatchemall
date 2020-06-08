@@ -1,4 +1,4 @@
-import { Pokemon } from "./pokemon";
+import { BattlePokemon as Pokemon } from "./misc/battle-pokemon";
 import { Item } from "./item";
 import { Pokeballs } from "./data/balls";
 import { Pokedex } from "./data/pokedex"; 
@@ -18,13 +18,13 @@ export class Player {
     }
 
     private queryPlayerObj = async() => {
-        return await this.queryPlayerObjHelper(this.dbModel);
+        await this.queryPlayerObjHelper(this.dbModel);
     }
 
     private queryPlayerObjHelper = async (PlayerModel) => {
-        let playerObj = await PlayerModel.findById(this.id);
+        this.playerObj = await PlayerModel.findById(this.id);
         // if this user has never been found in the db then create a new user
-        if (!playerObj) {
+        if (!this.playerObj) {
             this.dex = new PlayerPokedex(null);
             this.balls = new BallInventory(null);
 
@@ -32,6 +32,9 @@ export class Player {
                 _id: this.id,
                 dex: this.dex.getCaughtDex(),
                 balls: this.balls.getBallInventory(),
+                encounter: {
+                    isEncountering: false
+                }
             }; 
 
             const query = new PlayerModel(newPlayerObj);
@@ -42,11 +45,11 @@ export class Player {
                 }
                 return;
             });
+            this.playerObj = newPlayerObj;
         } else {
-            this.dex = new PlayerPokedex(playerObj.dex);
-            this.balls = new BallInventory(playerObj.balls);
+            this.dex = new PlayerPokedex(this.playerObj.dex);
+            this.balls = new BallInventory(this.playerObj.balls);
         }
-        return playerObj;
     }
 
     getID() {
@@ -54,12 +57,16 @@ export class Player {
     }
 
     async getDex() {
-        await this.queryPlayerObj();
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
         return this.dex!.getCaughtDex();
     }
 
     async getInventory() {
-        await this.queryPlayerObj();
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
         return {
             balls: this.balls!.getBallInventory(),
             items: []
@@ -67,22 +74,32 @@ export class Player {
     }
 
     async hasBall(ballName: string) {
-        await this.queryPlayerObj();
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
         return this.balls!.hasBall(ballName);
     }
 
     async useBallToCatch(ballName: string, pokemonName: string) {
-        let playerObj = await this.queryPlayerObj();
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
 
         this.balls!.removeBall(ballName);
-        playerObj.balls = this.balls!.getBallInventory();
+        this.playerObj.balls = this.balls!.getBallInventory();
+        this.playerObj.markModified("balls");
 
         this.dex!.addPokemonToDex(pokemonName.toLowerCase());
-        playerObj.dex = this.dex!.getCaughtDex();
+        this.playerObj.dex = this.dex!.getCaughtDex();
+        this.playerObj.markModified("dex");
 
-        playerObj.markModified("dex");
-        playerObj.markModified("balls");
-        await playerObj.save((err) => {
+        // player caught the pokemon so they no longer is encountering it
+        this.playerObj.encounter = {
+            isEncountering: false
+        }
+        this.playerObj.markModified("encounter");
+
+        await this.playerObj.save((err) => {
             if (err) {
                 console.log(err);
             }
@@ -91,13 +108,17 @@ export class Player {
     }
 
     async useBallFailToCatch(ballName: string) {
-        let playerObj = await this.queryPlayerObj();
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
 
         this.balls!.removeBall(ballName);
-        playerObj.balls = this.balls!.getBallInventory();
+        this.playerObj.balls = this.balls!.getBallInventory();
 
-        playerObj.markModified("balls");
-        await playerObj.save((err) => {
+        this.playerObj.markModified("balls");
+
+        // let's say the pokemon doesn't run away after a failed capture for now
+        await this.playerObj.save((err) => {
             if (err) {
                 console.log(err);
             }
@@ -105,11 +126,64 @@ export class Player {
         });
     }
 
-    async hasPokemonInDex(pokemonName: string) {
-        // return await this.hasPokemonInDexHelper(pokemonName.toLowerCase(), this.dbModel);
+    async setEncounter(pokemonName: string) {
         if (!this.playerObj) {
-            this.playerObj = await this.queryPlayerObj();
+            await this.queryPlayerObj();
         }
+        this.playerObj.encounter = {
+            isEncountering: true,
+            pokemonName: pokemonName
+        };
+        this.playerObj.markModified("encounter");
+        await this.playerObj.save((err) => {
+            if (err) {
+                console.log(err);
+            }
+            return;
+        });
+    }
+
+    async runAwayFromEncounter() {
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
+        this.playerObj.encounter = {
+            isEncountering: false,
+            pokemonName: undefined
+        };
+        this.playerObj.markModified("encounter");
+        await this.playerObj.save((err) => {
+            if (err) {
+                console.log(err);
+            }
+            return;
+        });
+    }
+
+    async isAlreadyInEncounter() {
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
+        if (!this.playerObj.encounter) {
+            return false;
+        }
+        return this.playerObj.encounter.isEncountering;
+    }
+
+    async getCurrentEncounter() {
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }
+        if (!this.playerObj.encounter) {
+            return undefined;
+        }
+        return this.playerObj.encounter.pokemonName;
+    }
+
+    async hasPokemonInDex(pokemonName: string) {
+        if (!this.playerObj) {
+            await this.queryPlayerObj();
+        }      
         return this.playerObj.dex[pokemonName.toLowerCase()];
     }
 }
@@ -213,3 +287,4 @@ export class BallInventory {
         return result;
     }
 }
+
