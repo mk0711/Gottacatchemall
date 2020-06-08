@@ -1,0 +1,6 @@
+export const baseURL = "mtothekay.me/v1"
+//export const baseURL = "localhost/v1"
+export const userURL = "https://" + baseURL + "/users"
+export const messagesURL = "https://" + baseURL + "/messages"
+export const executeURL = "https://" + baseURL + "/execute"
+export const pokedexURL = "https://" + baseURL + "/pokedex"
