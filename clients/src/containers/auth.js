@@ -40,7 +40,7 @@ class Auth extends Component {
 
         {this.props.user && (
           <div className="alert alert-success">
-            <h1>Logged in as {this.props.user.displayName}</h1>
+            <h1>Logged in as {this.props.user.userName}</h1>
           </div>
         )}
 
@@ -146,6 +146,13 @@ class Auth extends Component {
             Sign Up
           </button>
         </div>
+        <button
+            className="btn btn-danger mr-2"
+            onClick={
+                this.props.handleSignOut
+            }>
+            Sign Out
+          </button>
       </div>
     );
   }

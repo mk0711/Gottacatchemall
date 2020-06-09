@@ -1,3 +1,3 @@
 GOOS=linux go build
-docker build -t mtothekay/gateway .
+docker build -t npham24/gateway .
 go clean

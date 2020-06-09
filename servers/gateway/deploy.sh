@@ -1,20 +1,5 @@
-#!/usr/bin/env bash
-./build.sh 
-docker push mtothekay/gateway 
+./build.sh
 
-export TLSCERT=/etc/letsencrypt/live/api.mtothekay.me/fullchain.pem
-export TLSKEY=/etc/letsencrypt/live/api.mtothekay.me/privkey.pem
+docker push npham24/gateway
 
-ssh ec2-user@api.mtothekay.me << EOF 
-docker rm -f gateway 
-docker pull mtothekay/gateway
-docker run \
-    -d \
-    --name gateway \
-    -p 443:443 \
-    -v /etc/letsencrypt:/etc/letsencrypt:ro \
-    -e TLSCERT=$TLSCERT \
-    -e TLSKEY=$TLSKEY \
-    mtothekay/gateway 
-exit 
-EOF 
+ssh ec2-user@api.npham24.me < update.sh

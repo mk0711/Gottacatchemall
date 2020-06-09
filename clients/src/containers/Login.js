@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Auth from "./auth";
+import Auth from "./Auth";
+import {apiBaseURL} from "../global"
 //import Error from "./NotFound"
 
 class Login extends Component {
@@ -29,7 +30,7 @@ class Login extends Component {
     };
 
     let json = JSON.stringify(values);
-    let dataURL = "https://api.mtothekay.me/v1/users";
+    let dataURL = apiBaseURL + "/v1/users";
     let request = {
       method: "POST",
       body: json,
@@ -75,7 +76,7 @@ class Login extends Component {
     };
 
     let json = JSON.stringify(obj);
-    let dataURL = "https://api.mtothekay.me/v1/sessions";
+    let dataURL = apiBaseURL + "/v1/sessions";
     let request = {
       method: "POST",
       body: json,
@@ -93,7 +94,7 @@ class Login extends Component {
 
   handleSignOut() {
     this.removeError();
-    let dataURL = "https://api.mtothekay.me/v1/sessions/mine";
+    let dataURL = apiBaseURL + "/v1/sessions/mine";
     let request = {
       method: "DELETE",
       headers: {
@@ -114,6 +115,7 @@ class Login extends Component {
       .then(response => {
         localStorage.clear();
         this.setState({ user: null });
+        alert("Signed out successfully");
         return response;
       })
       .catch(this.handleError);
@@ -127,6 +129,7 @@ class Login extends Component {
             user={this.state.user}
             handleSignUp={this.handleSignUp}
             handleSignIn={this.handleSignIn}
+            handleSignOut={this.handleSignOut}
           />
       </div>
     );

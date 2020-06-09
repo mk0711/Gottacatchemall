@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Gottacatchemall/servers/gateway/models/users"
 	"github.com/Gottacatchemall/servers/gateway/sessions"
-	"github.com/Gottacatchemall/servers/gateway/users"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -210,6 +210,14 @@ func (context *HandlerContext) SessionHandler(w http.ResponseWriter, r *http.Req
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return
 	}
+
+	// log successful user sign-in attempts
+	userLog := &users.UserLog{
+		ID:        user.ID,
+		StartAt:   time.Now(),
+		IPAddress: getUserIP(r),
+	}
+	context.UserStore.InsertUserLog(userLog)
 
 	// If authentication is successful, begin a new session
 	sessionState := &SessionState{

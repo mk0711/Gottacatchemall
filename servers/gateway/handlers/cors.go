@@ -38,6 +38,7 @@ func (c *CORSHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
+
 	c.Handler.ServeHTTP(w, r)
 }
 

@@ -1,0 +1,20 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "Pokemon Microservice",
+  "main": "index.js",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/mongoose": "^5.7.23",
+    "@types/node": "^14.0.12",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.18",
+    "ts-mongoose": "^0.0.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "npham24",
+  "license": "ISC"
+}

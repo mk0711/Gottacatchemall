@@ -3,7 +3,7 @@ package handlers
 import (
 	"time"
 
-	"github.com/Gottacatchemall/servers/gateway/users"
+	"github.com/Gottacatchemall/servers/gateway/models/users"
 )
 
 //SessionState captures the signing key, what time the session began,

@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { AppContext } from "./libs/contextlibs";
-
-
 import "./App.css";
 import Routes from "./Routes";
 
@@ -25,24 +21,32 @@ function App() {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight>   
+          <Nav pullRight>
           {isAuthenticated
-            ? <NavItem onClick={handleLogout}>Logout</NavItem>  
+            ? <NavItem onClick={handleLogout}>Logout</NavItem> 
             : <>
-              <LinkContainer to="/signup">
-                <NavItem>Signup</NavItem>
+              <LinkContainer to="/inventory">
+                <NavItem>Inventory</NavItem>
               </LinkContainer>
+
+              <LinkContainer to="/pokedex">
+                <NavItem>Dex</NavItem>
+              </LinkContainer>
+
+              <LinkContainer to="/team">
+                <NavItem>Team</NavItem>
+              </LinkContainer>
+
               <LinkContainer to="/login">
                 <NavItem>Login</NavItem>
               </LinkContainer>
             </>
           }             
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
        <Routes />
-      </AppContext.Provider>
     </div>
   );
 }

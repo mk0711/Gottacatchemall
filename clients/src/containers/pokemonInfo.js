@@ -18,8 +18,6 @@ class pokemonInfo extends React.Component {
   }
 
     render = () => {
-
-
       return (
         <div>
             <p>??</p>
