@@ -20,12 +20,15 @@ We want to create this application because we want to help those around us stay 
 
 ### API Documentation
 GET /v1/pokedex
+
 returns all the pokemon and if they are caught by the user or not like this example:
+
 response type = {
-    "bulbasaur": false,
-    "ivysaur": false,
-    "venusaur": false,
+>"bulbasaur": false,
+    >"ivysaur": false,
+    >"venusaur": false,
     ...
+
 }
 Possible return status: 
 200 (OK)
