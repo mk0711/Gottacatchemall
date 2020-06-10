@@ -11,13 +11,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const { contentType, applicationJSON, XUser } = require("../header");
 const balls_1 = require("../data/balls");
+const items_1 = require("../data/items");
 exports.getSpecificBallHandler = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     // get the pokemon name from request param
-    const ballName = request.params["ballName"];
-    const ball = balls_1.Pokeballs[ballName.toLowerCase()];
-    if (ball) {
+    const itemName = request.params["itemName"];
+    // if no type request parameter present then use pokeball
+    let itemType = request.query.type;
+    let itemMap;
+    if (!itemType) {
+        itemMap = balls_1.Pokeballs;
+    }
+    else if (itemType.toLowerCase() === "ball") {
+        itemMap = balls_1.Pokeballs;
+    }
+    else if (itemType.toLowerCase() === "item") {
+        itemMap = items_1.Items;
+    }
+    else {
+        itemMap = balls_1.Pokeballs;
+    }
+    const item = itemMap[itemName.toLowerCase()];
+    if (item) {
         response.set(contentType, applicationJSON);
-        response.status(200).json(ball);
+        response.status(200).json(item);
     }
     else {
         response.status(400).send("Bad item name");

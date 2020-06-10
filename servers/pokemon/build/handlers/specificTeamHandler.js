@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const battle_pokemon_1 = require("../misc/battle-pokemon");
+const player_1 = require("../player");
 const { contentType, applicationJSON, textPlain, XUser } = require("../header");
 exports.getSpecificTeamHandler = (request, response, { BattlePokemonModel }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -28,7 +30,7 @@ exports.getSpecificTeamHandler = (request, response, { BattlePokemonModel }) => 
         response.status(500).send("There was an error getting your team. Error: " + e);
     }
 });
-exports.postSpecificTeamHandler = (request, response, { BattlePokemonModel }) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postSpecificTeamHandler = (request, response, { BattlePokemonModel, PlayerModel }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (request.get(contentType) !== applicationJSON) {
             response.status(400).send("Bad request. Application type must be JSON");
@@ -43,8 +45,39 @@ exports.postSpecificTeamHandler = (request, response, { BattlePokemonModel }) =>
             response.status(400).json("User does not have this pokemon");
             return;
         }
-        const { nickName } = request.body;
-        pokemon.nickName = nickName;
+        const { nickName, useItem } = request.body;
+        if (useItem) {
+            const itemToUse = useItem;
+            // check to see if user has item in the first place
+            const player = new player_1.Player(user.id, PlayerModel);
+            const playerHasItem = yield player.hasItem(itemToUse);
+            if (!playerHasItem) {
+                response.set(contentType, textPlain);
+                response.status(400).json("User does not have this item");
+                return;
+            }
+            const pokemonUsingItem = new battle_pokemon_1.BattlePokemon(user.id, pokemon.pokemonName, pokemon);
+            const pokemonBeforeUsingItem = pokemonUsingItem.getPokemonObj().pokemonName;
+            const useItemSuccess = pokemonUsingItem.useItem(itemToUse);
+            // if use item success then need to delete it from inventory
+            if (useItemSuccess) {
+                const pokemonAfterUsingItem = pokemonUsingItem.getPokemonObj();
+                pokemon.stats = pokemonAfterUsingItem.stats;
+                pokemon.moves = pokemonAfterUsingItem.moves;
+                pokemon.nickName = pokemonAfterUsingItem.nickName;
+                if (pokemonBeforeUsingItem != pokemonAfterUsingItem.pokemonName) {
+                    // evolved!
+                    yield player.useItemAndAddToDex(itemToUse, pokemonAfterUsingItem.pokemonName);
+                }
+                else {
+                    yield player.useItem(itemToUse);
+                }
+                pokemon.pokemonName = pokemonAfterUsingItem.pokemonName;
+            }
+        }
+        if (nickName && nickName != "") {
+            pokemon.nickName = nickName;
+        }
         pokemon.save((err, newPkm) => {
             if (err) {
                 console.log(err);

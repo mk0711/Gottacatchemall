@@ -2,6 +2,8 @@
 
 import mongoose from "mongoose";
 import express from "express";
+// import cors from "cors";
+
 import { PlayerModel } from "./schemas/playerSchema";
 import { BattlePokemonModel } from "./schemas/battlePokemonSchema";
 
@@ -89,7 +91,7 @@ app.route("/v1/inventory")
     .get(RequestWrapper(getInventoryHandler, { PlayerModel }))
     .all(methodNotAllowed)
 
-app.route("/v1/items/balls/:ballName")
+app.route("/v1/items/:itemName")
     .get(getSpecificBallHandler)
     .all(methodNotAllowed)
 
@@ -103,7 +105,7 @@ app.route("/v1/team")
 
 app.route("/v1/team/:pokemonID")
     .get(RequestWrapper(getSpecificTeamHandler, { BattlePokemonModel }))
-    .post(RequestWrapper(postSpecificTeamHandler, { BattlePokemonModel }))
+    .post(RequestWrapper(postSpecificTeamHandler, { BattlePokemonModel, PlayerModel }))
     .all(methodNotAllowed)
 
 app.route("/v1/moves/:moveName")

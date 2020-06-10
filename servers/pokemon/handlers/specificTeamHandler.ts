@@ -1,3 +1,6 @@
+import { BattlePokemon } from "../misc/battle-pokemon";
+import { Player } from "../player";
+
 const { contentType, applicationJSON, textPlain, XUser } = require("../header");
 
 export const getSpecificTeamHandler = async (request, response, { BattlePokemonModel }) => {
@@ -21,7 +24,7 @@ export const getSpecificTeamHandler = async (request, response, { BattlePokemonM
     }
 }
 
-export const postSpecificTeamHandler = async (request, response, { BattlePokemonModel }) => {
+export const postSpecificTeamHandler = async (request, response, { BattlePokemonModel, PlayerModel }) => {
     try {
         if (request.get(contentType) !== applicationJSON) {
             response.status(400).send("Bad request. Application type must be JSON");
@@ -40,8 +43,47 @@ export const postSpecificTeamHandler = async (request, response, { BattlePokemon
             return;
         }
 
-        const { nickName } = request.body;
-        pokemon.nickName = nickName;
+        const { nickName, useItem } = request.body;
+
+        if (useItem) {
+            const itemToUse = useItem;
+
+            // check to see if user has item in the first place
+            const player = new Player(user.id, PlayerModel);
+            const playerHasItem = await player.hasItem(itemToUse);
+            if (!playerHasItem) {
+                response.set(contentType, textPlain);
+                response.status(400).json("User does not have this item");
+                return;
+            }
+
+            const pokemonUsingItem = new BattlePokemon(user.id, pokemon.pokemonName, pokemon); 
+            const pokemonBeforeUsingItem = pokemonUsingItem.getPokemonObj().pokemonName;
+            const useItemSuccess = pokemonUsingItem.useItem(itemToUse);
+
+            // if use item success then need to delete it from inventory
+            if (useItemSuccess) {
+            
+                const pokemonAfterUsingItem = pokemonUsingItem.getPokemonObj();
+                pokemon.stats = pokemonAfterUsingItem.stats;
+                pokemon.moves = pokemonAfterUsingItem.moves;
+                pokemon.nickName = pokemonAfterUsingItem.nickName;
+
+                if (pokemonBeforeUsingItem != pokemonAfterUsingItem.pokemonName) {
+                    // evolved!
+                    await player.useItemAndAddToDex(itemToUse, pokemonAfterUsingItem.pokemonName);
+                } else {
+                    await player.useItem(itemToUse);
+                }
+                pokemon.pokemonName = pokemonAfterUsingItem.pokemonName;
+            }
+        }
+
+        if (nickName && nickName != "") {
+            pokemon.nickName = nickName;
+        }
+
+
         pokemon.save((err, newPkm) => {
             if (err) {
                 console.log(err);

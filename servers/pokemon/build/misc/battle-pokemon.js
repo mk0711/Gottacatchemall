@@ -211,6 +211,64 @@ class BattlePokemon {
     otherStatCalc(base, level, IV, EV, natureMultiplier) {
         return Math.floor(((((2 * base + IV + (EV / 4)) * level) / 100) + 5) * natureMultiplier);
     }
+    useItem(itemName) {
+        if (itemName === "rarecandy" || itemName === "Rare Candy") {
+            if (this.pokemonObj.level === 100) {
+                return false;
+            }
+            this.pokemonObj.level += 1;
+            const evolveSuccess = this.tryToEvolve("");
+            if (!evolveSuccess) {
+                // if evolve fail => recalculate base stat
+                this.pokemonObj.stats = this.statCalc(this.pokemonObj.level, this.pokemonObj.IV, this.pokemonObj.nature);
+            }
+            return true;
+        }
+        else {
+            return this.tryToEvolve(itemName);
+        }
+    }
+    tryToEvolve(itemName) {
+        const possibleEvolutions = this.getPossibleEvolutions();
+        for (const evolution of possibleEvolutions) {
+            const evolutionName = evolution.toLowerCase();
+            const evolvedPkmInfo = pokedex_1.Pokedex[evolutionName];
+            if (itemName != "") {
+                // try to evolve using item
+                if (evolvedPkmInfo.evoType === "useItem" && evolvedPkmInfo.evoItem === itemName) {
+                    this.evolvesTo(evolutionName);
+                    return true;
+                }
+            }
+            else {
+                // try to evolve with level
+                if (evolvedPkmInfo.evoLevel && evolvedPkmInfo.evoLevel <= this.pokemonObj.level) {
+                    this.evolvesTo(evolutionName);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    evolvesTo(pokemonName) {
+        // if the nickname is the same as the pokemon name change the nickname
+        if (this.pokemonObj.nickName.toLowerCase() === this.pokemonObj.pokemonName.toLowerCase()) {
+            this.pokemonObj.nickName = pokemonName;
+        }
+        this.pokemonName = pokemonName;
+        const newMoves = this.getRandMovesOfPkmFromLearnset(this.pokemonName);
+        const newStats = this.statCalc(this.pokemonObj.level, this.pokemonObj.IV, this.pokemonObj.nature);
+        this.pokemonObj.moves = newMoves;
+        this.pokemonObj.stats = newStats;
+        this.pokemonObj.pokemonName = pokemonName;
+    }
+    getPossibleEvolutions() {
+        const pokemonData = pokedex_1.Pokedex[this.pokemonName];
+        if (pokemonData && pokemonData.evolvesTo) {
+            return pokemonData.evolvesTo;
+        }
+        return [];
+    }
 }
 exports.BattlePokemon = BattlePokemon;
 class PokemonMove {

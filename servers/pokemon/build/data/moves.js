@@ -116,7 +116,7 @@ exports.Moves = {
         category: "physical",
         acc: 100
     },
-    skytattack: {
+    skyattack: {
         name: "Sky Attack",
         power: 140,
         type: "flying",
@@ -196,7 +196,7 @@ exports.Moves = {
     },
     //ground
     dig: {
-        name: "Earthquake",
+        name: "Dig",
         power: 80,
         type: "ground",
         category: "physical",

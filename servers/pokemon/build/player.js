@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const balls_1 = require("./data/balls");
+const items_1 = require("./data/items");
 const pokedex_1 = require("./data/pokedex");
 class Player {
     constructor(id, PlayerModel) {
@@ -22,11 +23,13 @@ class Player {
             // if this user has never been found in the db then create a new user
             if (!this.playerObj) {
                 this.dex = new PlayerPokedex(null);
-                this.balls = new BallInventory(null);
+                this.balls = new Inventory(null, balls_1.Pokeballs);
+                this.items = new Inventory(null, items_1.Items);
                 const newPlayerObj = {
                     _id: this.id,
                     dex: this.dex.getCaughtDex(),
-                    balls: this.balls.getBallInventory(),
+                    balls: this.balls.getInventory(),
+                    items: this.items.getInventory(),
                     encounter: {
                         isEncountering: false
                     }
@@ -42,11 +45,13 @@ class Player {
             }
             else {
                 this.dex = new PlayerPokedex(this.playerObj.dex);
-                this.balls = new BallInventory(this.playerObj.balls);
+                this.balls = new Inventory(this.playerObj.balls, balls_1.Pokeballs);
+                this.items = new Inventory(this.playerObj.items, items_1.Items);
             }
         });
         this.team = [];
         this.balls = undefined;
+        this.items = undefined;
         this.dex = undefined;
         this.playerObj = undefined;
         this.dbModel = PlayerModel;
@@ -68,8 +73,8 @@ class Player {
                 yield this.queryPlayerObj();
             }
             return {
-                balls: this.balls.getBallInventory(),
-                items: []
+                balls: this.balls.getInventory(),
+                items: this.items.getInventory()
             };
         });
     }
@@ -78,7 +83,31 @@ class Player {
             if (!this.playerObj) {
                 yield this.queryPlayerObj();
             }
-            return this.balls.hasBall(ballName);
+            return this.balls.hasItem(ballName);
+        });
+    }
+    hasItem(itemName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            return this.items.hasItem(itemName);
+        });
+    }
+    useItem(itemName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            this.items.removeItem(itemName);
+            this.playerObj.items = this.items.getInventory();
+            this.playerObj.markModified("items");
+            yield this.playerObj.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                return;
+            });
         });
     }
     useBallToCatch(ballName, pokemonName) {
@@ -86,8 +115,8 @@ class Player {
             if (!this.playerObj) {
                 yield this.queryPlayerObj();
             }
-            this.balls.removeBall(ballName);
-            this.playerObj.balls = this.balls.getBallInventory();
+            this.balls.removeItem(ballName);
+            this.playerObj.balls = this.balls.getInventory();
             this.playerObj.markModified("balls");
             this.dex.addPokemonToDex(pokemonName.toLowerCase());
             this.playerObj.dex = this.dex.getCaughtDex();
@@ -105,13 +134,32 @@ class Player {
             });
         });
     }
+    useItemAndAddToDex(itemName, pokemonName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.playerObj) {
+                yield this.queryPlayerObj();
+            }
+            this.items.removeItem(itemName);
+            this.playerObj.items = this.items.getInventory();
+            this.playerObj.markModified("items");
+            this.dex.addPokemonToDex(pokemonName.toLowerCase());
+            this.playerObj.dex = this.dex.getCaughtDex();
+            this.playerObj.markModified("dex");
+            yield this.playerObj.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                return;
+            });
+        });
+    }
     useBallFailToCatch(ballName) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.playerObj) {
                 yield this.queryPlayerObj();
             }
-            this.balls.removeBall(ballName);
-            this.playerObj.balls = this.balls.getBallInventory();
+            this.balls.removeItem(ballName);
+            this.playerObj.balls = this.balls.getInventory();
             this.playerObj.markModified("balls");
             // let's say the pokemon doesn't run away after a failed capture for now
             yield this.playerObj.save((err) => {
@@ -225,61 +273,62 @@ class PlayerPokedex {
     }
 }
 exports.PlayerPokedex = PlayerPokedex;
-class BallInventory {
-    constructor(ballInventory) {
-        this.validPokeballNames = this.getValidPokeballNames();
+class Inventory {
+    constructor(ballInventory, itemMap) {
+        this.itemMap = itemMap;
+        this.validItemNames = this.getValidItemNames();
         if (!ballInventory) {
-            this.ballInventory = this.initBallInventory();
+            this.inventory = this.initItemInventory();
         }
         else {
-            this.ballInventory = ballInventory;
+            this.inventory = ballInventory;
         }
     }
-    getBallInventory() {
-        return this.ballInventory;
+    getInventory() {
+        return this.inventory;
     }
     // return true if add successful and false otherwise
-    addBall(ball) {
-        if (this.validPokeballNames.has(ball)) {
-            this.ballInventory[ball] += 1;
+    addItem(item) {
+        if (this.validItemNames.has(item)) {
+            this.inventory[item] += 1;
             return true;
         }
         return false;
     }
     // return true if user can use ball and deduct the ball count by 1
-    removeBall(ball) {
-        if (!this.validPokeballNames.has(ball)) {
+    removeItem(item) {
+        if (!this.validItemNames.has(item)) {
             return false;
         }
-        if (!this.hasBall(ball)) {
+        if (!this.hasItem(item)) {
             return false;
         }
-        this.ballInventory[ball] -= 1;
+        this.inventory[item] -= 1;
         return true;
     }
-    hasBall(ball) {
-        return this.ballInventory[ball] > 0;
+    hasItem(item) {
+        return this.inventory[item] > 0;
     }
-    initBallInventory() {
+    initItemInventory() {
         let result = {};
-        for (const ball of this.validPokeballNames) {
-            if (balls_1.Pokeballs[ball].isMasterball) {
-                result[ball] = 0;
+        for (const item of this.validItemNames) {
+            if (this.itemMap[item].isMasterball) {
+                result[item] = 0;
             }
             else {
-                result[ball] = 100;
+                result[item] = 100;
             }
         }
         return result;
     }
-    getValidPokeballNames() {
+    getValidItemNames() {
         let result = new Set();
-        const validPokeballNames = Object.keys(balls_1.Pokeballs);
-        for (const ball of validPokeballNames) {
-            result.add(ball);
+        const validItemNames = Object.keys(this.itemMap);
+        for (const itemName of validItemNames) {
+            result.add(itemName);
         }
         return result;
     }
 }
-exports.BallInventory = BallInventory;
+exports.Inventory = Inventory;
 //# sourceMappingURL=player.js.map

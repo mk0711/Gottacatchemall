@@ -6,6 +6,9 @@ export const PlayerSchema = createSchema({
     }),
     balls: Type.object().of({
     }),
+    items: Type.object().of({
+
+    }),
     encounter: Type.object().of({
         isEncountering: Type.boolean(),
         pokemonName: Type.string()

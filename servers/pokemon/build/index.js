@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const express_1 = __importDefault(require("express"));
+// import cors from "cors";
 const playerSchema_1 = require("./schemas/playerSchema");
 const battlePokemonSchema_1 = require("./schemas/battlePokemonSchema");
 const dexHandler_1 = require("./handlers/dexHandler");
@@ -82,7 +83,7 @@ app.route("/v1/catch/:pokemonName")
 app.route("/v1/inventory")
     .get(RequestWrapper(inventoryHandler_1.getInventoryHandler, { PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
-app.route("/v1/items/balls/:ballName")
+app.route("/v1/items/:itemName")
     .get(specificBallHandler_1.getSpecificBallHandler)
     .all(methodNotAllowed);
 app.route("/v1/items/image/:itemName")
@@ -93,7 +94,7 @@ app.route("/v1/team")
     .all(methodNotAllowed);
 app.route("/v1/team/:pokemonID")
     .get(RequestWrapper(specificTeamHandler_1.getSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
-    .post(RequestWrapper(specificTeamHandler_1.postSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
+    .post(RequestWrapper(specificTeamHandler_1.postSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel, PlayerModel: playerSchema_1.PlayerModel }))
     .all(methodNotAllowed);
 app.route("/v1/moves/:moveName")
     .get(specificMoveHandler_1.getSpecificMoveHandler)

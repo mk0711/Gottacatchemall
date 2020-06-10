@@ -125,7 +125,7 @@ export const Moves: {[moveName:string]: MoveData} = {
         category: "physical",
         acc: 100
     },
-    skytattack: {
+    skyattack: {
         name: "Sky Attack",
         power: 140,
         type: "flying",
@@ -211,7 +211,7 @@ export const Moves: {[moveName:string]: MoveData} = {
 
     //ground
     dig: {
-        name: "Earthquake", 
+        name: "Dig", 
         power: 80,
         type: "ground",
         category: "physical",

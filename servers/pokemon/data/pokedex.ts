@@ -36,7 +36,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Overgrow", H: "Chlorophyll"},
 		height: 0.7,
 		weight: 6.9,
-        evolvesTo: ["Ivysaur"],
+        evolvesTo: ["ivysaur"],
         eggGroups: ["Monster", "Grass"],
         catchRate: 45
 	},
@@ -52,7 +52,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		weight: 13,
 		evolvedFrom: "Bulbasaur",
 		evoLevel: 16,
-        evolvesTo: ["Venusaur"],
+        evolvesTo: ["venusaur"],
         eggGroups: ["Monster", "Grass"],
         catchRate: 45
 	},
@@ -66,7 +66,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Overgrow", H: "Chlorophyll"},
 		height: 2,
 		weight: 100,
-		evolvedFrom: "Ivysaur",
+		evolvedFrom: "ivysaur",
         evoLevel: 32,
         eggGroups: ["Monster", "Grass"],
         catchRate: 45
@@ -81,7 +81,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Blaze", H: "Solar Power"},
 		height: 0.6,
 		weight: 8.5,
-        evolvesTo: ["Charmeleon"],
+        evolvesTo: ["charmeleon"],
         eggGroups: ["Monster", "Dragon"],
         catchRate: 45
 	},
@@ -95,9 +95,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Blaze", H: "Solar Power"},
 		height: 1.1,
 		weight: 19,
-		evolvedFrom: "Charmander",
+		evolvedFrom: "charmander",
 		evoLevel: 16,
-        evolvesTo: ["Charizard"],
+        evolvesTo: ["charizard"],
         eggGroups: ["Monster", "Dragon"],
         catchRate: 45
 	},
@@ -111,7 +111,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Blaze", H: "Solar Power"},
 		height: 1.7,
 		weight: 90.5,
-		evolvedFrom: "Charmeleon",
+		evolvedFrom: "charmeleon",
 		evoLevel: 36,
         eggGroups: ["Monster", "Dragon"],
         catchRate: 45
@@ -126,7 +126,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Torrent", H: "Rain Dish"},
 		height: 0.5,
 		weight: 9,
-        evolvesTo: ["Wartortle"],
+        evolvesTo: ["wartortle"],
         eggGroups: ["Monster", "Water 1"],
         catchRate: 45
     },
@@ -140,9 +140,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Torrent", H: "Rain Dish"},
 		height: 1,
 		weight: 22.5,
-		evolvedFrom: "Squirtle",
+		evolvedFrom: "squirtle",
 		evoLevel: 16,
-		evolvesTo: ["Blastoise"],
+		evolvesTo: ["blastoise"],
         eggGroups: ["Monster", "Water 1"],
         catchRate: 45
 	},
@@ -156,7 +156,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Torrent", H: "Rain Dish"},
 		height: 1.6,
 		weight: 85.5,
-		evolvedFrom: "Wartortle",
+		evolvedFrom: "wartortle",
         evoLevel: 36,
         eggGroups: ["Monster", "Water 1"],
         catchRate: 45
@@ -170,7 +170,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shield Dust", H: "Run Away"},
 		height: 0.3,
 		weight: 2.9,
-		evolvesTo: ["Metapod"],
+		evolvesTo: ["metapod"],
         eggGroups: ["Bug"],
         catchRate: 255
 	},
@@ -183,9 +183,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shed Skin"},
 		height: 0.7,
 		weight: 9.9,
-		evolvedFrom: "Caterpie",
+		evolvedFrom: "caterpie",
 		evoLevel: 7,
-		evolvesTo: ["Butterfree"],
+		evolvesTo: ["butterfree"],
         eggGroups: ["Bug"],
         catchRate: 120
 	},
@@ -198,7 +198,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Compound Eyes", H: "Tinted Lens"},
 		height: 1.1,
 		weight: 32,
-		evolvedFrom: "Metapod",
+		evolvedFrom: "metapod",
 		evoLevel: 10,
         eggGroups: ["Bug"],
         catchRate: 45
@@ -212,8 +212,8 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shield Dust", H: "Run Away"},
 		height: 0.3,
 		weight: 3.2,
-		evolvesTo: ["Kakuna"],
-        eggGroups: ["Bug"],
+		evolvesTo: ["kakuna"],
+        eggGroups: ["bug"],
         catchRate: 255
 	},
 	kakuna: {
@@ -225,9 +225,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shed Skin"},
 		height: 0.6,
 		weight: 10,
-		evolvedFrom: "Weedle",
+		evolvedFrom: "weedle",
 		evoLevel: 7,
-		evolvesTo: ["Beedrill"],
+		evolvesTo: ["beedrill"],
         eggGroups: ["Bug"],
         catchRate: 120
 	},
@@ -240,7 +240,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swarm", H: "Sniper"},
 		height: 1,
 		weight: 29.5,
-		evolvedFrom: "Kakuna",
+		evolvedFrom: "kakuna",
 		evoLevel: 10,
         eggGroups: ["Bug"],
         catchRate: 45
@@ -254,7 +254,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Keen Eye", 1: "Tangled Feet", H: "Big Pecks"},
 		height: 0.3,
 		weight: 1.8,
-		evolvesTo: ["Pidgeotto"],
+		evolvesTo: ["pidgeotto"],
         eggGroups: ["Flying"],
         catchRate: 255
 	},
@@ -269,7 +269,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		weight: 30,
 		evolvedFrom: "Pidgey",
 		evoLevel: 18,
-		evolvesTo: ["Pidgeot"],
+		evolvesTo: ["pidgeot"],
         eggGroups: ["Flying"],
         catchRate: 120
 	},
@@ -282,7 +282,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Keen Eye", 1: "Tangled Feet", H: "Big Pecks"},
 		height: 1.5,
 		weight: 39.5,
-		evolvedFrom: "Pidgeotto",
+		evolvedFrom: "pidgeotto",
         evoLevel: 36,
         eggGroups: ["Flying"],
         catchRate: 45
@@ -296,7 +296,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Guts", H: "Hustle"},
 		height: 0.3,
 		weight: 3.5,
-		evolvesTo: ["Raticate"],
+		evolvesTo: ["raticate"],
         eggGroups: ["Field"],
         catchRate: 255
 	},
@@ -309,7 +309,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Guts", H: "Hustle"},
 		height: 0.7,
 		weight: 18.5,
-		evolvedFrom: "Rattata",
+		evolvedFrom: "rattata",
 		evoLevel: 20,
         eggGroups: ["Field"],
         catchRate: 127
@@ -323,7 +323,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Keen Eye", H: "Sniper"},
 		height: 0.3,
 		weight: 2,
-		evolvesTo: ["Fearow"],
+		evolvesTo: ["fearow"],
         eggGroups: ["Flying"],
         catchRate: 255
 	},
@@ -336,7 +336,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Keen Eye", H: "Sniper"},
 		height: 1.2,
 		weight: 38,
-		evolvedFrom: "Spearow",
+		evolvedFrom: "spearow",
 		evoLevel: 20,
         eggGroups: ["Flying"],
         catchRate: 90
@@ -350,7 +350,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Intimidate", 1: "Shed Skin", H: "Unnerve"},
 		height: 2,
 		weight: 6.9,
-		evolvesTo: ["Arbok"],
+		evolvesTo: ["arbok"],
         eggGroups: ["Field", "Dragon"],
         catchRate: 255
 	},
@@ -363,7 +363,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Intimidate", 1: "Shed Skin", H: "Unnerve"},
 		height: 3.5,
 		weight: 65,
-		evolvedFrom: "Ekans",
+		evolvedFrom: "ekans",
 		evoLevel: 22,
         eggGroups: ["Field", "Dragon"],
         catchRate: 90
@@ -377,7 +377,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Static", H: "Lightning Rod"},
 		height: 0.4,
 		weight: 6,
-        evolvesTo: ["Raichu"],
+        evolvesTo: ["raichu"],
         eggGroups: ["Field", "Fairy"],
         catchRate: 190
 	},
@@ -390,9 +390,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Static", H: "Lightning Rod"},
 		height: 0.8,
 		weight: 30,
-		evolvedFrom: "Pikachu",
+		evolvedFrom: "pikachu",
 		evoType: "useItem",
-		evoItem: "Thunder Stone",
+		evoItem: "thunderstone",
         eggGroups: ["Field", "Fairy"],
         catchRate: 75
 	},
@@ -405,7 +405,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Sand Veil", H: "Sand Rush"},
 		height: 0.6,
 		weight: 12,
-		evolvesTo: ["Sandslash"],
+		evolvesTo: ["sandslash"],
         eggGroups: ["Field"],
         catchRate: 255
 	},
@@ -418,7 +418,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Sand Veil", H: "Sand Rush"},
 		height: 1,
 		weight: 29.5,
-		evolvedFrom: "Sandshrew",
+		evolvedFrom: "sandshrew",
 		evoLevel: 22,
         eggGroups: ["Field"],
         catchRate: 90
@@ -433,7 +433,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Hustle"},
 		height: 0.4,
 		weight: 7,
-		evolvesTo: ["Nidorina"],
+		evolvesTo: ["nidorina"],
         eggGroups: ["Monster", "Field"],
         catchRate: 235
 	},
@@ -447,9 +447,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Hustle"},
 		height: 0.8,
 		weight: 20,
-		evolvedFrom: "Nidoran-F",
+		evolvedFrom: "nidoranf",
 		evoLevel: 16,
-		evolvesTo: ["Nidoqueen"],
+		evolvesTo: ["nidoqueen"],
         eggGroups: ["Undiscovered"],
         catchRate: 120
 	},
@@ -463,9 +463,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Sheer Force"},
 		height: 1.3,
 		weight: 60,
-		evolvedFrom: "Nidorina",
+		evolvedFrom: "nidorina",
 		evoType: "useItem",
-		evoItem: "Moon Stone",
+		evoItem: "moonstone",
         eggGroups: ["Undiscovered"],
         catchRate: 45
 	},
@@ -479,7 +479,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Hustle"},
 		height: 0.5,
 		weight: 9,
-		evolvesTo: ["Nidorino"],
+		evolvesTo: ["nidorino"],
         eggGroups: ["Monster", "Field"],
         catchRate: 235
 	},
@@ -493,9 +493,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Hustle"},
 		height: 0.9,
 		weight: 19.5,
-		evolvedFrom: "Nidoran-M",
+		evolvedFrom: "nidoranm",
 		evoLevel: 16,
-		evolvesTo: ["Nidoking"],
+		evolvesTo: ["nidoking"],
         eggGroups: ["Monster", "Field"],
         catchRate: 120
 	},
@@ -509,9 +509,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Rivalry", H: "Sheer Force"},
 		height: 1.4,
 		weight: 62,
-		evolvedFrom: "Nidorino",
+		evolvedFrom: "nidorino",
 		evoType: "useItem",
-		evoItem: "Moon Stone",
+		evoItem: "moonstone",
         eggGroups: ["Monster", "Field"],
         catchRate: 45
 	},
@@ -525,7 +525,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Cute Charm", 1: "Magic Guard", H: "Friend Guard"},
 		height: 0.6,
 		weight: 7.5,
-		evolvesTo: ["Clefable"],
+		evolvesTo: ["clefable"],
         eggGroups: ["Fairy"],
         catchRate: 150
 	},
@@ -539,9 +539,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Cute Charm", 1: "Magic Guard", H: "Unaware"},
 		height: 1.3,
 		weight: 40,
-		evolvedFrom: "Clefairy",
+		evolvedFrom: "clefairy",
 		evoType: "useItem",
-		evoItem: "Moon Stone",
+		evoItem: "moonstone",
         eggGroups: ["Fairy"],
         catchRate: 25
 	},
@@ -555,7 +555,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Flash Fire", H: "Drought"},
 		height: 0.6,
 		weight: 9.9,
-		evolvesTo: ["Ninetales"],
+		evolvesTo: ["ninetales"],
         eggGroups: ["Field"],
         catchRate: 190
 	},
@@ -569,9 +569,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Flash Fire", H: "Drought"},
 		height: 1.1,
 		weight: 19.9,
-		evolvedFrom: "Vulpix",
+		evolvedFrom: "vulpix",
 		evoType: "useItem",
-		evoItem: "Fire Stone",
+		evoItem: "firestone",
         eggGroups: ["Field"],
         catchRate: 75
 	},
@@ -585,7 +585,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Cute Charm", 1: "Competitive", H: "Friend Guard"},
 		height: 0.5,
 		weight: 5.5,
-		evolvesTo: ["Wigglytuff"],
+		evolvesTo: ["wigglytuff"],
         eggGroups: ["Fairy"],
         catchRate: 170
 	},
@@ -599,9 +599,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Cute Charm", 1: "Competitive", H: "Frisk"},
 		height: 1,
 		weight: 12,
-		evolvedFrom: "Jigglypuff",
+		evolvedFrom: "jigglypuff",
 		evoType: "useItem",
-		evoItem: "Moon Stone",
+		evoItem: "moonstone",
         eggGroups: ["Fairy"],
         catchRate: 50
 	},
@@ -614,7 +614,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Inner Focus", H: "Infiltrator"},
 		height: 0.8,
 		weight: 7.5,
-		evolvesTo: ["Golbat"],
+		evolvesTo: ["golbat"],
         eggGroups: ["Flying"],
         catchRate: 255
 	},
@@ -627,7 +627,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Inner Focus", H: "Infiltrator"},
 		height: 1.6,
 		weight: 55,
-		evolvedFrom: "Zubat",
+		evolvedFrom: "zubat",
 		evoLevel: 22,
         eggGroups: ["Flying"],
         catchRate: 90
@@ -641,7 +641,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Run Away"},
 		height: 0.5,
 		weight: 5.4,
-		evolvesTo: ["Gloom"],
+		evolvesTo: ["gloom"],
         eggGroups: ["Grass"],
         catchRate: 255
 	},
@@ -654,9 +654,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Stench"},
 		height: 0.8,
 		weight: 8.6,
-		evolvedFrom: "Oddish",
+		evolvedFrom: "oddish",
 		evoLevel: 21,
-		evolvesTo: ["Vileplume"],
+		evolvesTo: ["vileplume"],
         eggGroups: ["Grass"],
         catchRate: 120
 	},
@@ -669,9 +669,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Effect Spore"},
         height: 1.2,
         weight: 5.4,
-		evolvedFrom: "Gloom",
+		evolvedFrom: "gloom",
 		evoType: "useItem",
-		evoItem: "Leaf Stone",
+		evoItem: "leafstone",
         eggGroups: ["Grass"],
         catchRate: 45
 	},
@@ -684,7 +684,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Effect Spore", 1: "Dry Skin", H: "Damp"},
 		height: 0.3,
 		weight: 5.4,
-		evolvesTo: ["Parasect"],
+		evolvesTo: ["parasect"],
         eggGroups: ["Bug", "Grass"],
         catchRate: 190
 	},
@@ -697,7 +697,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Effect Spore", 1: "Dry Skin", H: "Damp"},
 		height: 1,
 		weight: 29.5,
-		evolvedFrom: "Paras",
+		evolvedFrom: "paras",
 		evoLevel: 24,
         eggGroups: ["Bug", "Grass"],
         catchRate: 75
@@ -711,7 +711,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Compound Eyes", 1: "Tinted Lens", H: "Run Away"},
 		height: 1,
 		weight: 30,
-		evolvesTo: ["Venomoth"],
+		evolvesTo: ["venomoth"],
         eggGroups: ["Bug"],
         catchRate: 190
 	},
@@ -724,7 +724,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shield Dust", 1: "Tinted Lens", H: "Wonder Skin"},
 		height: 1.5,
 		weight: 12.5,
-		evolvedFrom: "Venonat",
+		evolvedFrom: "venonat",
 		evoLevel: 31,
         eggGroups: ["Bug"],
         catchRate: 75
@@ -738,7 +738,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Sand Veil", 1: "Arena Trap", H: "Sand Force"},
 		height: 0.2,
 		weight: 0.8,
-		evolvesTo: ["Dugtrio"],
+		evolvesTo: ["dugtrio"],
         eggGroups: ["Field"],
         catchRate: 255
 	},
@@ -751,7 +751,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Sand Veil", 1: "Arena Trap", H: "Sand Force"},
 		height: 0.7,
 		weight: 33.3,
-		evolvedFrom: "Diglett",
+		evolvedFrom: "diglett",
 		evoLevel: 26,
         eggGroups: ["Field"],
         catchRate: 50
@@ -765,7 +765,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Pickup", 1: "Technician", H: "Unnerve"},
 		height: 0.4,
 		weight: 4.2,
-		evolvesTo: ["Persian"],
+		evolvesTo: ["persian"],
         eggGroups: ["Field"],
         catchRate: 255
 	},
@@ -778,7 +778,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Limber", 1: "Technician", H: "Unnerve"},
 		height: 1,
 		weight: 32,
-		evolvedFrom: "Meowth",
+		evolvedFrom: "meowth",
 		evoLevel: 28,
         eggGroups: ["Field"],
         catchRate: 90
@@ -792,7 +792,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Damp", 1: "Cloud Nine", H: "Swift Swim"},
 		height: 0.8,
 		weight: 19.6,
-		evolvesTo: ["Golduck"],
+		evolvesTo: ["golduck"],
         eggGroups: ["Water 1", "Field"],
         catchRate: 190
 	},
@@ -805,7 +805,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Damp", 1: "Cloud Nine", H: "Swift Swim"},
 		height: 1.7,
 		weight: 76.6,
-		evolvedFrom: "Psyduck",
+		evolvedFrom: "psyduck",
 		evoLevel: 33,
         eggGroups: ["Water 1", "Field"],
         catchRate: 75
@@ -819,7 +819,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Vital Spirit", 1: "Anger Point", H: "Defiant"},
 		height: 0.5,
 		weight: 28,
-		evolvesTo: ["Primeape"],
+		evolvesTo: ["primeape"],
         eggGroups: ["Field"],
         catchRate: 190
 	},
@@ -832,7 +832,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Vital Spirit", 1: "Anger Point", H: "Defiant"},
 		height: 1,
 		weight: 32,
-		evolvedFrom: "Mankey",
+		evolvedFrom: "mankey",
 		evoLevel: 28,
         eggGroups: ["Field"],
         catchRate: 75
@@ -847,7 +847,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Justified"},
 		height: 0.7,
 		weight: 19,
-		evolvesTo: ["Arcanine"],
+		evolvesTo: ["arcanine"],
         eggGroups: ["Field"],
         catchRate: 190
 	},
@@ -861,9 +861,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Justified"},
 		height: 1.9,
 		weight: 155,
-		evolvedFrom: "Growlithe",
+		evolvedFrom: "growlithe",
 		evoType: "useItem",
-		evoItem: "Fire Stone",
+		evoItem: "firestone",
         eggGroups: ["Field"],
         catchRate: 75
 	},
@@ -876,7 +876,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Water Absorb", 1: "Damp", H: "Swift Swim"},
 		height: 0.6,
 		weight: 12.4,
-		evolvesTo: ["Poliwhirl"],
+		evolvesTo: ["poliwhirl"],
         eggGroups: ["Water 1"],
         catchRate: 255
 	},
@@ -889,9 +889,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Water Absorb", 1: "Damp", H: "Swift Swim"},
 		height: 1,
 		weight: 20,
-		evolvedFrom: "Poliwag",
+		evolvedFrom: "poliwag",
 		evoLevel: 25,
-		evolvesTo: ["Poliwrath"],
+		evolvesTo: ["poliwrath"],
         eggGroups: ["Water 1"],
         catchRate: 120
 	},
@@ -904,9 +904,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Water Absorb", 1: "Damp", H: "Swift Swim"},
 		height: 1.3,
 		weight: 54,
-		evolvedFrom: "Poliwhirl",
+		evolvedFrom: "poliwhirl",
 		evoType: "useItem",
-		evoItem: "Water Stone",
+		evoItem: "waterstone",
         eggGroups: ["Water 1"],
         catchRate: 45
 	},
@@ -920,7 +920,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Synchronize", 1: "Inner Focus", H: "Magic Guard"},
 		height: 0.9,
 		weight: 19.5,
-		evolvesTo: ["Kadabra"],
+		evolvesTo: ["kadabra"],
         eggGroups: ["Human-Like"],
         catchRate: 200
 	},
@@ -934,9 +934,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Synchronize", 1: "Inner Focus", H: "Magic Guard"},
 		height: 1.3,
 		weight: 56.5,
-		evolvedFrom: "Abra",
+		evolvedFrom: "abra",
 		evoLevel: 16,
-		evolvesTo: ["Alakazam"],
+		evolvesTo: ["alakazam"],
         eggGroups: ["Human-Like"],
         catchRate: 100
 	},
@@ -950,7 +950,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Synchronize", 1: "Inner Focus", H: "Magic Guard"},
 		height: 1.5,
 		weight: 48,
-		evolvedFrom: "Kadabra",
+		evolvedFrom: "kadabra",
 		evoType: "trade",
         eggGroups: ["Human-Like"],
         catchRate: 50
@@ -965,7 +965,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Guts", 1: "No Guard", H: "Steadfast"},
 		height: 0.8,
 		weight: 19.5,
-		evolvesTo: ["Machoke"],
+		evolvesTo: ["machoke"],
         eggGroups: ["Human-Like"],
         catchRate: 180
 	},
@@ -979,9 +979,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Guts", 1: "No Guard", H: "Steadfast"},
 		height: 1.5,
 		weight: 70.5,
-		evolvedFrom: "Machop",
+		evolvedFrom: "machop",
 		evoLevel: 28,
-		evolvesTo: ["Machamp"],
+		evolvesTo: ["machamp"],
         eggGroups: ["Human-Like"],
         catchRate: 90
 	},
@@ -995,7 +995,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Guts", 1: "No Guard", H: "Steadfast"},
 		height: 1.6,
 		weight: 130,
-		evolvedFrom: "Machoke",
+		evolvedFrom: "machoke",
 		evoType: "trade",
         eggGroups: ["Human-Like"],
         catchRate: 45
@@ -1009,7 +1009,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Gluttony"},
 		height: 0.7,
 		weight: 4,
-		evolvesTo: ["Weepinbell"],
+		evolvesTo: ["weepinbell"],
         eggGroups: ["Grass"],
         catchRate: 255
 	},
@@ -1022,9 +1022,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Gluttony"},
 		height: 1,
 		weight: 6.4,
-		evolvedFrom: "Bellsprout",
+		evolvedFrom: "bellsprout",
 		evoLevel: 21,
-		evolvesTo: ["Victreebel"],
+		evolvesTo: ["victreebel"],
         eggGroups: ["Grass"],
         catchRate: 120
 	},
@@ -1037,9 +1037,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Gluttony"},
 		height: 1.7,
 		weight: 15.5,
-		evolvedFrom: "Weepinbell",
+		evolvedFrom: "weepinbell",
 		evoType: "useItem",
-		evoItem: "Leaf Stone",
+		evoItem: "leafstone",
         eggGroups: ["Grass"],
         catchRate: 45
 	},
@@ -1052,7 +1052,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Clear Body", 1: "Liquid Ooze", H: "Rain Dish"},
 		height: 0.9,
 		weight: 45.5,
-		evolvesTo: ["Tentacruel"],
+		evolvesTo: ["tentacruel"],
         eggGroups: ["Water 3"],
         catchRate: 190
 	},
@@ -1065,7 +1065,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Clear Body", 1: "Liquid Ooze", H: "Rain Dish"},
 		height: 1.6,
 		weight: 55,
-		evolvedFrom: "Tentacool",
+		evolvedFrom: "tentacool",
 		evoLevel: 30,
         eggGroups: ["Water 3"],
         catchRate: 60
@@ -1079,7 +1079,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Rock Head", 1: "Sturdy", H: "Sand Veil"},
 		height: 0.4,
 		weight: 20,
-		evolvesTo: ["Graveler"],
+		evolvesTo: ["graveler"],
         eggGroups: ["Mineral"],
         catchRate: 255
 	},
@@ -1092,9 +1092,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Rock Head", 1: "Sturdy", H: "Sand Veil"},
 		height: 1,
 		weight: 105,
-		evolvedFrom: "Geodude",
+		evolvedFrom: "geodude",
 		evoLevel: 25,
-		evolvesTo: ["Golem"],
+		evolvesTo: ["golem"],
         eggGroups: ["Mineral"],
         catchRate: 120
 	},
@@ -1107,7 +1107,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Rock Head", 1: "Sturdy", H: "Sand Veil"},
 		height: 1.4,
 		weight: 300,
-		evolvedFrom: "Graveler",
+		evolvedFrom: "graveler",
 		evoType: "trade",
         eggGroups: ["Mineral"],
         catchRate: 45
@@ -1121,7 +1121,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Flash Fire", H: "Flame Body"},
 		height: 1,
 		weight: 30,
-		evolvesTo: ["Rapidash"],
+		evolvesTo: ["rapidash"],
         eggGroups: ["Field"],
         catchRate: 190
 	},
@@ -1134,7 +1134,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Flash Fire", H: "Flame Body"},
 		height: 1.7,
 		weight: 95,
-		evolvedFrom: "Ponyta",
+		evolvedFrom: "ponyta",
 		evoLevel: 40,
         eggGroups: ["Field"],
         catchRate: 60
@@ -1148,7 +1148,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Oblivious", 1: "Own Tempo", H: "Regenerator"},
 		height: 1.2,
 		weight: 36,
-		evolvesTo: ["Slowbro", "Slowking"],
+		evolvesTo: ["slowbro"],
         eggGroups: ["Monster", "Water 1"],
         catchRate: 190
 	},
@@ -1161,7 +1161,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Oblivious", 1: "Own Tempo", H: "Regenerator"},
 		height: 1.6,
 		weight: 78.5,
-		evolvedFrom: "Slowpoke",
+		evolvedFrom: "slowpoke",
 		evoLevel: 37,
         eggGroups: ["Monster", "Water 1"],
         catchRate: 75
@@ -1176,7 +1176,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Magnet Pull", 1: "Sturdy", H: "Analytic"},
 		height: 0.3,
 		weight: 6,
-		evolvesTo: ["Magneton"],
+		evolvesTo: ["magneton"],
         eggGroups: ["Mineral"],
         catchRate: 190
 	},
@@ -1190,7 +1190,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Magnet Pull", 1: "Sturdy", H: "Analytic"},
 		height: 1,
 		weight: 60,
-		evolvedFrom: "Magnemite",
+		evolvedFrom: "magnemite",
 		evoLevel: 30,
 		evolvesTo: ["Magnezone"],
         eggGroups: ["Mineral"],
@@ -1217,7 +1217,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Early Bird", H: "Tangled Feet"},
 		height: 1.4,
 		weight: 39.2,
-		evolvesTo: ["Dodrio"],
+		evolvesTo: ["dodrio"],
         eggGroups: ["Flying"],
         catchRate: 190
 	},
@@ -1230,7 +1230,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Early Bird", H: "Tangled Feet"},
 		height: 1.8,
 		weight: 85.2,
-		evolvedFrom: "Doduo",
+		evolvedFrom: "doduo",
 		evoLevel: 31,
         eggGroups: ["Flying"],
         catchRate: 45
@@ -1244,7 +1244,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Thick Fat", 1: "Hydration", H: "Ice Body"},
 		height: 1.1,
 		weight: 90,
-		evolvesTo: ["Dewgong"],
+		evolvesTo: ["dewgong"],
         eggGroups: ["Water 1", "Field"],
         catchRate: 190
 	},
@@ -1257,7 +1257,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Thick Fat", 1: "Hydration", H: "Ice Body"},
 		height: 1.7,
 		weight: 120,
-		evolvedFrom: "Seel",
+		evolvedFrom: "seel",
 		evoLevel: 34,
         eggGroups: ["Water 1", "Field"],
         catchRate: 75
@@ -1271,7 +1271,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Stench", 1: "Sticky Hold", H: "Poison Touch"},
 		height: 0.9,
 		weight: 30,
-		evolvesTo: ["Muk"],
+		evolvesTo: ["muk"],
         eggGroups: ["Amorphous"],
         catchRate: 190
 	},
@@ -1284,7 +1284,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Stench", 1: "Sticky Hold", H: "Poison Touch"},
 		height: 1.2,
 		weight: 30,
-		evolvedFrom: "Grimer",
+		evolvedFrom: "grimer",
 		evoLevel: 38,
         eggGroups: ["Amorphous"],
         catchRate: 75
@@ -1298,7 +1298,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shell Armor", 1: "Skill Link", H: "Overcoat"},
 		height: 0.3,
 		weight: 4,
-		evolvesTo: ["Cloyster"],
+		evolvesTo: ["cloyster"],
         eggGroups: ["Water 3"],
         catchRate: 190
 	},
@@ -1311,9 +1311,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shell Armor", 1: "Skill Link", H: "Overcoat"},
 		height: 1.5,
 		weight: 132.5,
-		evolvedFrom: "Shellder",
+		evolvedFrom: "shellder",
 		evoType: "useItem",
-		evoItem: "Water Stone",
+		evoItem: "waterstone",
         eggGroups: ["Water 3"],
         catchRate: 60
 	},
@@ -1326,7 +1326,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Levitate"},
 		height: 1.3,
 		weight: 0.1,
-		evolvesTo: ["Haunter"],
+		evolvesTo: ["haunter"],
         eggGroups: ["Amorphous"],
         catchRate: 190
 	},
@@ -1339,9 +1339,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Levitate"},
 		height: 1.6,
 		weight: 0.1,
-		evolvedFrom: "Gastly",
+		evolvedFrom: "gastly",
 		evoLevel: 25,
-		evolvesTo: ["Gengar"],
+		evolvesTo: ["gengar"],
         eggGroups: ["Amorphous"],
         catchRate: 90
 	},
@@ -1354,7 +1354,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Cursed Body"},
 		height: 1.5,
 		weight: 40.5,
-		evolvedFrom: "Haunter",
+		evolvedFrom: "haunter",
 		evoType: "trade",
         eggGroups: ["Amorphous"],
         catchRate: 45
@@ -1380,7 +1380,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Insomnia", 1: "Forewarn", H: "Inner Focus"},
 		height: 1,
 		weight: 32.4,
-		evolvesTo: ["Hypno"],
+		evolvesTo: ["hypno"],
         eggGroups: ["Human-Like"],
         catchRate: 190
 	},
@@ -1393,7 +1393,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Insomnia", 1: "Forewarn", H: "Inner Focus"},
 		height: 1.6,
 		weight: 75.6,
-		evolvedFrom: "Drowzee",
+		evolvedFrom: "drowzee",
 		evoLevel: 26,
         eggGroups: ["Human-Like"],
         catchRate: 75
@@ -1407,7 +1407,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Hyper Cutter", 1: "Shell Armor", H: "Sheer Force"},
 		height: 0.4,
 		weight: 6.5,
-		evolvesTo: ["Kingler"],
+		evolvesTo: ["kingler"],
         eggGroups: ["Water 3"],
         catchRate: 225
 	},
@@ -1420,7 +1420,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Hyper Cutter", 1: "Shell Armor", H: "Sheer Force"},
 		height: 1.3,
 		weight: 60,
-		evolvedFrom: "Krabby",
+		evolvedFrom: "krabby",
 		evoLevel: 28,
         eggGroups: ["Water 3"],
         catchRate: 60
@@ -1435,7 +1435,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Soundproof", 1: "Static", H: "Aftermath"},
 		height: 0.5,
 		weight: 10.4,
-		evolvesTo: ["Electrode"],
+		evolvesTo: ["electrode"],
         eggGroups: ["Mineral"],
         catchRate: 190
 	},
@@ -1449,7 +1449,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Soundproof", 1: "Static", H: "Aftermath"},
 		height: 1.2,
 		weight: 66.6,
-		evolvedFrom: "Voltorb",
+		evolvedFrom: "voltorb",
 		evoLevel: 30,
         eggGroups: ["Mineral"],
         catchRate: 60
@@ -1463,7 +1463,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Harvest"},
 		height: 0.4,
 		weight: 2.5,
-		evolvesTo: ["Exeggutor"],
+		evolvesTo: ["exeggutor"],
         eggGroups: ["Grass"],
         catchRate: 90
 	},
@@ -1476,9 +1476,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Chlorophyll", H: "Harvest"},
 		height: 2,
 		weight: 120,
-		evolvedFrom: "Exeggcute",
+		evolvedFrom: "exeggcute",
 		evoType: "useItem",
-		evoItem: "Leaf Stone",
+		evoItem: "leafstone",
         eggGroups: ["Grass"],
         catchRate: 45
 	},
@@ -1491,7 +1491,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Rock Head", 1: "Lightning Rod", H: "Battle Armor"},
 		height: 0.4,
 		weight: 6.5,
-		evolvesTo: ["Marowak"],
+		evolvesTo: ["marowak"],
         eggGroups: ["Monster"],
         catchRate: 190
 	},
@@ -1504,7 +1504,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Rock Head", 1: "Lightning Rod", H: "Battle Armor"},
 		height: 1,
 		weight: 45,
-		evolvedFrom: "Cubone",
+		evolvedFrom: "cubone",
 		evoLevel: 28,
         eggGroups: ["Monster"],
         catchRate: 75
@@ -1544,7 +1544,6 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Own Tempo", 1: "Oblivious", H: "Cloud Nine"},
 		height: 1.2,
 		weight: 65.5,
-		evolvesTo: ["Lickilicky"],
         eggGroups: ["Monster"],
         catchRate: 45
 	},
@@ -1557,7 +1556,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Levitate", 1: "Neutralizing Gas", H: "Stench"},
 		height: 0.6,
 		weight: 1,
-        evolvesTo: ["Weezing"],
+        evolvesTo: ["weezing"],
         eggGroups: ["Amorphous"],
         catchRate: 90
 	},
@@ -1570,7 +1569,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Levitate", 1: "Neutralizing Gas", H: "Stench"},
 		height: 1.2,
 		weight: 9.5,
-		evolvedFrom: "Koffing",
+		evolvedFrom: "koffing",
 		evoLevel: 35,
         eggGroups: ["Amorphous"],
         catchRate: 60
@@ -1584,7 +1583,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Lightning Rod", 1: "Rock Head", H: "Reckless"},
 		height: 1,
 		weight: 115,
-		evolvesTo: ["Rhydon"],
+		evolvesTo: ["rhydon"],
         eggGroups: ["Monster", "Field"],
         catchRate: 120
 	},
@@ -1597,7 +1596,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Lightning Rod", 1: "Rock Head", H: "Reckless"},
 		height: 1.9,
 		weight: 120,
-		evolvedFrom: "Rhyhorn",
+		evolvedFrom: "rhyhorn",
 		evoLevel: 42,
         eggGroups: ["Monster", "Field"],
         catchRate: 60
@@ -1649,7 +1648,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Sniper", H: "Damp"},
 		height: 0.4,
 		weight: 8,
-		evolvesTo: ["Seadra"],
+		evolvesTo: ["seadra"],
         eggGroups: ["Water 1", "Dragon"],
         catchRate: 225
 	},
@@ -1662,7 +1661,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Poison Point", 1: "Sniper", H: "Damp"},
 		height: 1.2,
 		weight: 25,
-		evolvedFrom: "Horsea",
+		evolvedFrom: "horsea",
 		evoLevel: 32,
         eggGroups: ["Water 1", "Dragon"],
         catchRate: 75
@@ -1676,7 +1675,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Water Veil", H: "Lightning Rod"},
 		height: 0.6,
 		weight: 15,
-		evolvesTo: ["Seaking"],
+		evolvesTo: ["seaking"],
         eggGroups: ["Water 2"],
         catchRate: 225
 	},
@@ -1689,7 +1688,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Water Veil", H: "Lightning Rod"},
 		height: 1.3,
 		weight: 39,
-		evolvedFrom: "Goldeen",
+		evolvedFrom: "goldeen",
 		evoLevel: 33,
         eggGroups: ["Water 2"],
         catchRate: 60
@@ -1704,7 +1703,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Illuminate", 1: "Natural Cure", H: "Analytic"},
 		height: 0.8,
 		weight: 34.5,
-		evolvesTo: ["Starmie"],
+		evolvesTo: ["starmie"],
         eggGroups: ["Water 3"],
         catchRate: 225
 	},
@@ -1718,9 +1717,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Illuminate", 1: "Natural Cure", H: "Analytic"},
 		height: 1.1,
 		weight: 80,
-		evolvedFrom: "Staryu",
+		evolvedFrom: "staryu",
 		evoType: "useItem",
-		evoItem: "Water Stone",
+		evoItem: "waterstone",
         eggGroups: ["Water 3"],
         catchRate: 60
 	},
@@ -1821,7 +1820,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", H: "Rattled"},
 		height: 0.9,
 		weight: 10,
-		evolvesTo: ["Gyarados"],
+		evolvesTo: ["gyarados"],
         eggGroups: ["Water 2", "Dragon"],
         catchRate: 225
 	},
@@ -1834,7 +1833,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Intimidate", H: "Moxie"},
 		height: 6.5,
 		weight: 235,
-		evolvedFrom: "Magikarp",
+		evolvedFrom: "magikarp",
 		evoLevel: 20,
         eggGroups: ["Water 2", "Dragon"],
         catchRate: 45
@@ -1874,7 +1873,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Run Away", 1: "Adaptability", H: "Anticipation"},
 		height: 0.3,
 		weight: 6.5,
-		evolvesTo: ["Vaporeon", "Jolteon", "Flareon"],
+		evolvesTo: ["vaporeon", "jolteon", "flareon"],
         eggGroups: ["Field"],
         catchRate: 45
 	},
@@ -1888,9 +1887,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Water Absorb", H: "Hydration"},
 		height: 1,
 		weight: 29,
-		evolvedFrom: "Eevee",
+		evolvedFrom: "eevee",
 		evoType: "useItem",
-		evoItem: "Water Stone",
+		evoItem: "waterstone",
         eggGroups: ["Field"],
         catchRate: 45
 	},
@@ -1904,9 +1903,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Volt Absorb", H: "Quick Feet"},
 		height: 0.8,
 		weight: 24.5,
-		evolvedFrom: "Eevee",
+		evolvedFrom: "eevee",
 		evoType: "useItem",
-		evoItem: "Thunder Stone",
+		evoItem: "thunderstone",
         eggGroups: ["Field"],
         catchRate: 45
 	},
@@ -1922,7 +1921,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		weight: 25,
 		evolvedFrom: "Eevee",
 		evoType: "useItem",
-		evoItem: "Fire Stone",
+		evoItem: "firestone",
         eggGroups: ["Field"],
         catchRate: 45
 	},
@@ -1936,7 +1935,6 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Trace", 1: "Download", H: "Analytic"},
 		height: 0.8,
 		weight: 36.5,
-		evolvesTo: ["Porygon2"],
         eggGroups: ["Mineral"],
         catchRate: 45
 	},
@@ -1950,7 +1948,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Shell Armor", H: "Weak Armor"},
 		height: 0.4,
 		weight: 7.5,
-		evolvesTo: ["Omastar"],
+		evolvesTo: ["omastar"],
         eggGroups: ["Water 1", "Water 3"],
         catchRate: 45
 	},
@@ -1964,7 +1962,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Shell Armor", H: "Weak Armor"},
 		height: 1,
 		weight: 35,
-		evolvedFrom: "Omanyte",
+		evolvedFrom: "omanyte",
 		evoLevel: 40,
         eggGroups: ["Water 1", "Water 3"],
         catchRate: 45
@@ -1979,7 +1977,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Battle Armor", H: "Weak Armor"},
 		height: 0.5,
 		weight: 11.5,
-		evolvesTo: ["Kabutops"],
+		evolvesTo: ["kabutops"],
         eggGroups: ["Water 1", "Water 3"],
         catchRate: 45
 	},
@@ -1993,7 +1991,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Swift Swim", 1: "Battle Armor", H: "Weak Armor"},
 		height: 1.3,
 		weight: 40.5,
-		evolvedFrom: "Kabuto",
+		evolvedFrom: "kabuto",
 		evoLevel: 40,
         eggGroups: ["Water 1", "Water 3"],
         catchRate: 45
@@ -2072,7 +2070,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shed Skin", H: "Marvel Scale"},
 		height: 1.8,
 		weight: 3.3,
-		evolvesTo: ["Dragonair"],
+		evolvesTo: ["dragonair"],
         eggGroups: ["Water 1", "Dragon"],
         catchRate: 45
 	},
@@ -2085,9 +2083,9 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Shed Skin", H: "Marvel Scale"},
 		height: 4,
 		weight: 16.5,
-		evolvedFrom: "Dratini",
+		evolvedFrom: "dratini",
 		evoLevel: 30,
-		evolvesTo: ["Dragonite"],
+		evolvesTo: ["dragonite"],
         eggGroups: ["Water 1", "Dragon"],
         catchRate: 45
 	},
@@ -2100,7 +2098,7 @@ export const Pokedex: {[pokemonName: string]: PokemonData} = {
 		abilities: {0: "Inner Focus", H: "Multiscale"},
 		height: 2.2,
 		weight: 210,
-		evolvedFrom: "Dragonair",
+		evolvedFrom: "dragonair",
 		evoLevel: 55,
         eggGroups: ["Water 1", "Dragon"],
         catchRate: 45

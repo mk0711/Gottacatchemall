@@ -29,7 +29,7 @@ class BallInventory extends React.Component {
     }
 
     async getBallInfo(ballName) {
-        const itemPath = "/v1/items/balls/" + ballName;
+        const itemPath = "/v1/items/" + ballName + "?type=ball";
         const response = await sendGetRequestWithAuthHeader(apiBaseURL + itemPath);
         return await response.json();
     }

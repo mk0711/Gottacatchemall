@@ -5,6 +5,7 @@ exports.PlayerSchema = ts_mongoose_1.createSchema({
     _id: ts_mongoose_1.Type.number(),
     dex: ts_mongoose_1.Type.object().of({}),
     balls: ts_mongoose_1.Type.object().of({}),
+    items: ts_mongoose_1.Type.object().of({}),
     encounter: ts_mongoose_1.Type.object().of({
         isEncountering: ts_mongoose_1.Type.boolean(),
         pokemonName: ts_mongoose_1.Type.string()

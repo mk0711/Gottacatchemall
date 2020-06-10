@@ -7,7 +7,7 @@ class TeamSpecificPokemonCard extends React.Component {
         super(props)
 
         this.state = {
-            moves: []
+            moves: [],
         }
     }
 
@@ -22,7 +22,6 @@ class TeamSpecificPokemonCard extends React.Component {
         this.setState({
             moves: moves
         })
-        console.log(moves)
     }
 
     async getMove(moveName) {

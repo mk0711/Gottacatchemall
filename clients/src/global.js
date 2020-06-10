@@ -1,4 +1,5 @@
-export const apiBaseURL = "https://api.npham24.me";
+export const apiBaseURL = "https://api.npham24.me"; //development
+// export const apiBaseURL = "http://localhost:80"; // local
 
 export const typeColorMap = {
     normal: "#A8A878",
