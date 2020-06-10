@@ -14,7 +14,8 @@ import { getInventoryHandler } from "./handlers/inventoryHandler";
 import { getPokemonImageHandler, getItemImageHandler } from "./handlers/imageHandler";
 import { getTeamHandler } from "./handlers/teamHandler";
 import { getSpecificTeamHandler, postSpecificTeamHandler } from "./handlers/specificTeamHandler";
-import { getSpecificBallHandler } from "./handlers/specificBallHandler"
+import { getSpecificBallHandler } from "./handlers/specificBallHandler";
+import { getSpecificMoveHandler } from "./handlers/specificMoveHandler";
 
 // const mongoEndpoint = "mongodb://localhost:27017/test"
 
@@ -103,6 +104,10 @@ app.route("/v1/team")
 app.route("/v1/team/:pokemonID")
     .get(RequestWrapper(getSpecificTeamHandler, { BattlePokemonModel }))
     .post(RequestWrapper(postSpecificTeamHandler, { BattlePokemonModel }))
+    .all(methodNotAllowed)
+
+app.route("/v1/moves/:moveName")
+    .get(getSpecificMoveHandler)
     .all(methodNotAllowed)
 
 // MongoDB connections

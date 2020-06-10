@@ -169,6 +169,7 @@ func main() {
 	mux.Handle("/v1/items/", pokemonProxy)
 	mux.Handle("/v1/team", pokemonProxy)
 	mux.Handle("/v1/team/", pokemonProxy)
+	mux.Handle("/v1/moves/", pokemonProxy)
 
 	wrappedMux := handlers.NewCORSHandler(mux)
 

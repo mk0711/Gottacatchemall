@@ -34,7 +34,7 @@ class MainPage extends React.Component {
       try {
         const dexPath = '/v1/pokedex';
         const response = await sendGetRequestWithAuthHeader(apiBaseURL + dexPath);
-        if (response.status == 401) {
+        if (response.status === 401) {
           this.setState({
             errorMessage: "Please log in."
           })
@@ -59,7 +59,7 @@ class MainPage extends React.Component {
     encounter = async () => {
       const encounterPath = "/v1/encounter";
       const response = await sendGetRequestWithAuthHeader(apiBaseURL + encounterPath);
-      if (response.status == 401) {
+      if (response.status === 401) {
         this.setState({
           errorMessage: "Please log in."
         })
@@ -87,6 +87,7 @@ class MainPage extends React.Component {
       const response = await sendGetRequestWithAuthHeader(apiBaseURL + runawayPath);
 
       const data = await response.text();
+      
 
       this.setState({encountering: {
         isEncountering: false

@@ -1,6 +1,21 @@
 "use strict";
-const Moves = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Moves = {
     //normal
+    tackle: {
+        name: "Tackle",
+        power: 50,
+        type: "normal",
+        category: "physical",
+        acc: 100
+    },
+    slash: {
+        name: "Slash",
+        power: 70,
+        type: "normal",
+        category: "physical",
+        acc: 100
+    },
     strength: {
         name: "Strength",
         power: 80,
@@ -15,6 +30,27 @@ const Moves = {
         category: "special",
         acc: 100
     },
+    hyperbeam: {
+        name: "Hyper Beam",
+        power: 150,
+        type: "normal",
+        category: "special",
+        acc: 90
+    },
+    gigaimpact: {
+        name: "Giga Impact",
+        power: 150,
+        type: "normal",
+        category: "Physical",
+        acc: 90
+    },
+    thrash: {
+        name: "Thrash",
+        power: 120,
+        type: "normal",
+        category: "physical",
+        acc: 10,
+    },
     //fighting
     closecombat: {
         name: "Close Combat",
@@ -22,23 +58,34 @@ const Moves = {
         type: "fighting",
         category: "physical",
         acc: 100,
-        self_debuff: [
-            { "def": {
-                    stage: 1,
-                    chance: 100
-                } },
-            { "spd": {
-                    stage: 1,
-                    chance: 100
-                } }
-        ]
     },
     aurasphere: {
         name: "Aura Sphere",
         power: 90,
         type: "fighting",
         category: "special",
-        acc: -1,
+        acc: 100,
+    },
+    karatechop: {
+        name: "Karate Chop",
+        power: 75,
+        type: "fighting",
+        category: "physical",
+        acc: 100,
+    },
+    crosschop: {
+        name: "Cross Chop",
+        power: 100,
+        type: "fighting",
+        category: "physical",
+        acc: 80,
+    },
+    skyuppercut: {
+        name: "Skyuppercut",
+        power: 90,
+        type: "fighting",
+        category: "physical",
+        acc: 85,
     },
     // flying
     drillpeck: {
@@ -76,6 +123,13 @@ const Moves = {
         category: "physical",
         acc: 90
     },
+    bravebird: {
+        name: "Brave Bird",
+        power: 120,
+        type: "flying",
+        category: "physical",
+        acc: 100
+    },
     wingattack: {
         name: "Wing Attack",
         power: 60,
@@ -84,16 +138,26 @@ const Moves = {
         acc: 90
     },
     //poison
+    acid: {
+        name: "Acid",
+        power: 40,
+        type: "poison",
+        category: "special",
+        acc: 100
+    },
+    poisonsting: {
+        name: "Poison Sting",
+        power: 15,
+        type: "poison",
+        category: "physical",
+        acc: 100,
+    },
     gunkshot: {
         name: "Gunk Shot",
         power: 120,
         type: "poison",
         category: "physical",
         acc: 80,
-        inflict_status: {
-            type: "poison",
-            chance: 30
-        }
     },
     sludgebomb: {
         name: "Sludge Bomb",
@@ -101,14 +165,17 @@ const Moves = {
         type: "poison",
         category: "special",
         acc: 100,
-        inflict_status: {
-            type: "poison",
-            chance: 30
-        }
     },
     poisontail: {
         name: "Poison Tail",
         power: 50,
+        type: "poison",
+        category: "physical",
+        acc: 100,
+    },
+    poisonjab: {
+        name: "Poison Jab",
+        power: 80,
         type: "poison",
         category: "physical",
         acc: 100,
@@ -128,6 +195,13 @@ const Moves = {
         acc: 100,
     },
     //ground
+    dig: {
+        name: "Earthquake",
+        power: 80,
+        type: "ground",
+        category: "physical",
+        acc: 100,
+    },
     earthquake: {
         name: "Earthquake",
         power: 100,
@@ -141,12 +215,6 @@ const Moves = {
         type: "ground",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spd": {
-                    stage: 1,
-                    chance: 10
-                } }
-        ]
     },
     drillrun: {
         name: "Drill Run",
@@ -176,7 +244,6 @@ const Moves = {
         type: "rock",
         category: "physical",
         acc: 80,
-        highcritratio: true
     },
     powergem: {
         name: "Power Gem",
@@ -206,6 +273,13 @@ const Moves = {
         category: "physical",
         acc: 90
     },
+    rockslide: {
+        name: "Rock Slide",
+        power: 75,
+        type: "rock",
+        category: "physical",
+        acc: 90
+    },
     //bug
     megahorn: {
         name: "Mega Horn",
@@ -220,12 +294,6 @@ const Moves = {
         type: "bug",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spd": {
-                    stage: 1,
-                    chance: 10
-                } }
-        ]
     },
     attackorder: {
         name: "Attack Order",
@@ -248,6 +316,13 @@ const Moves = {
         category: "physical",
         acc: 100
     },
+    bugbite: {
+        name: "Bug Bite",
+        power: 60,
+        type: "bug",
+        category: "physical",
+        acc: 100
+    },
     //ghost
     shadowsneak: {
         name: "Shadow Sneak",
@@ -255,7 +330,6 @@ const Moves = {
         type: "ghost",
         category: "physical",
         acc: 100,
-        priority: 1,
     },
     shadowball: {
         name: "Shadow Ball",
@@ -263,12 +337,6 @@ const Moves = {
         type: "ghost",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spd": {
-                    stage: 1,
-                    chance: 20
-                } }
-        ]
     },
     shadowclaw: {
         name: "Shadow Claw",
@@ -305,7 +373,6 @@ const Moves = {
         type: "steel",
         category: "physical",
         acc: 100,
-        flinch_chance: 30
     },
     flashcannon: {
         name: "Flash Cannon",
@@ -313,12 +380,6 @@ const Moves = {
         type: "steel",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spd": {
-                    stage: 1,
-                    chance: 10
-                } }
-        ]
     },
     metalclaw: {
         name: "Metal Claw",
@@ -334,25 +395,34 @@ const Moves = {
         category: "physical",
         acc: 90,
     },
-    sunsteelstrike: {
-        name: "Sunsteel Strike",
-        power: 100,
+    steelbeam: {
+        name: "Steel Beam",
+        power: 130,
         type: "steel",
+        category: "special",
+        acc: 90,
+    },
+    //fire
+    ember: {
+        name: "Ember",
+        power: 40,
+        type: "fire",
+        category: "special",
+        acc: 100
+    },
+    firepunch: {
+        name: "Fire Punch",
+        power: 75,
+        type: "fire",
         category: "physical",
         acc: 100,
     },
-    //fire
     flareblitz: {
         name: "Flare Blitz",
         power: 120,
         type: "fire",
         category: "physical",
         acc: 100,
-        recoil: 0.33,
-        inflict_status: {
-            type: "burn",
-            chance: 10
-        }
     },
     fireblast: {
         name: "Fire Blast",
@@ -360,10 +430,6 @@ const Moves = {
         type: "fire",
         category: "special",
         acc: 85,
-        inflict_status: {
-            type: "burn",
-            chance: 10
-        }
     },
     burnup: {
         name: "Burn Up",
@@ -386,14 +452,41 @@ const Moves = {
         category: "special",
         acc: 90
     },
+    flamethrower: {
+        name: "Flamethrower",
+        power: 90,
+        type: "fire",
+        category: "special",
+        acc: 100
+    },
+    blastburn: {
+        name: "Blast Burn",
+        power: 150,
+        type: "fire",
+        category: "special",
+        acc: 90
+    },
     //water
+    bubble: {
+        name: "Bubble",
+        power: 20,
+        type: "water",
+        category: "special",
+        acc: 100,
+    },
+    bubblebeam: {
+        name: "Bubble",
+        power: 65,
+        type: "water",
+        category: "special",
+        acc: 100,
+    },
     waterfall: {
         name: "Water Fall",
         power: 80,
         type: "water",
         category: "physical",
         acc: 100,
-        flinch_chance: 30
     },
     hydropump: {
         name: "Hydropnump",
@@ -423,14 +516,27 @@ const Moves = {
         category: "physical",
         acc: 100,
     },
+    hydrocannon: {
+        name: "Hydro Cannon",
+        power: 150,
+        type: "water",
+        category: "special",
+        acc: 90
+    },
     //grass
+    seedbomb: {
+        name: "Seed Bomb",
+        power: 80,
+        type: "grass",
+        category: "physical",
+        acc: 100
+    },
     leafblade: {
         name: "Leaf Blade",
         power: 90,
         type: "grass",
         category: "physical",
         acc: 100,
-        highcritratio: true
     },
     leafstorm: {
         name: "Leaf Storm",
@@ -438,12 +544,6 @@ const Moves = {
         type: "grass",
         category: "special",
         acc: 90,
-        self_debuff: [
-            { "spa": {
-                    stage: 2,
-                    chance: 100
-                } }
-        ]
     },
     absorb: {
         name: "Absorb",
@@ -459,8 +559,15 @@ const Moves = {
         category: "special",
         acc: 100
     },
-    branckpoke: {
-        name: "Branck Poke",
+    energyball: {
+        name: "Energy Ball",
+        power: 80,
+        type: "grass",
+        category: "special",
+        acc: 100
+    },
+    branchpoke: {
+        name: "Branch Poke",
         power: 40,
         type: "grass",
         category: "physical",
@@ -480,17 +587,27 @@ const Moves = {
         category: "physical",
         acc: 100
     },
+    frenzyplant: {
+        name: "Frenzy Plant",
+        power: 150,
+        type: "grass",
+        category: "special",
+        acc: 90
+    },
     //electric
+    spark: {
+        name: "Spark",
+        power: 65,
+        type: "electric",
+        category: "physical",
+        acc: 100,
+    },
     thunderpunch: {
         name: "Thunder Punch",
         power: 75,
         type: "electric",
         category: "physical",
         acc: 100,
-        inflict_status: {
-            type: "paralyze",
-            chance: 10
-        }
     },
     thunderbolt: {
         name: "Thunder Bolt",
@@ -498,10 +615,13 @@ const Moves = {
         type: "electric",
         category: "special",
         acc: 100,
-        inflict_status: {
-            type: "paralyze",
-            chance: 10
-        }
+    },
+    thunder: {
+        name: "Thunder",
+        power: 110,
+        type: "electric",
+        category: "special",
+        acc: 70
     },
     voltswitch: {
         name: "Volt Switch",
@@ -531,7 +651,6 @@ const Moves = {
         type: "psychic",
         category: "physical",
         acc: 90,
-        flinch_chance: 20
     },
     psychic: {
         name: "Psychic",
@@ -539,12 +658,13 @@ const Moves = {
         type: "psychic",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spd": {
-                    stage: 1,
-                    chance: 10
-                } }
-        ]
+    },
+    psybeam: {
+        name: "Psybeam",
+        power: 65,
+        type: "psychic",
+        category: "special",
+        acc: 100,
     },
     //ice
     icepunch: {
@@ -553,10 +673,13 @@ const Moves = {
         type: "ice",
         category: "physical",
         acc: 100,
-        inflict_status: {
-            type: "freeze",
-            chance: 10
-        }
+    },
+    aurorabeam: {
+        name: "Aurora Beam",
+        power: 65,
+        type: "ice",
+        category: "special",
+        acc: 100,
     },
     icebeam: {
         name: "Ice Beam",
@@ -564,27 +687,23 @@ const Moves = {
         type: "ice",
         category: "special",
         acc: 100,
-        inflict_status: {
-            type: "freeze",
-            chance: 10
-        }
     },
-    iceburn: {
-        name: "Ice Burn",
-        power: 140,
+    blizzard: {
+        name: "Blizzard",
+        power: 110,
         type: "ice",
         category: "special",
-        acc: 90,
+        acc: 70,
     },
-    icecrash: {
-        name: "Ice Crash",
+    iciclecrash: {
+        name: "Icicle Crash",
         power: 85,
         type: "ice",
         category: "physical",
         acc: 90,
     },
-    icespear: {
-        name: "Ice Spear",
+    iciclespear: {
+        name: "Icicle Spear",
         power: 25,
         type: "ice",
         category: "physical",
@@ -592,56 +711,83 @@ const Moves = {
     },
     //dragon
     dragonrush: {
+        name: "Dragon Rush",
         power: 100,
         type: "dragon",
         category: "physical",
         acc: 85
     },
     dracometeor: {
+        name: "Draco Meteor",
         power: 130,
         type: "dragon",
         category: "special",
         acc: 90,
-        self_debuff: [
-            { "spa": {
-                    stage: 2,
-                    chance: 100
-                } }
-        ]
+    },
+    outrage: {
+        name: "Outrage",
+        power: 120,
+        type: "dragon",
+        category: "physical",
+        acc: 10,
+    },
+    dragonpulse: {
+        name: "Dragon Pulse",
+        power: 90,
+        type: "dragon",
+        category: "physical",
+        acc: 10,
     },
     //dark
     nightslash: {
+        name: "Night Slash",
         power: 70,
         type: "dark",
         category: "physical",
         acc: 100,
-        highcritratio: true,
+    },
+    bite: {
+        name: "Bite",
+        power: 60,
+        type: "dark",
+        category: "physical",
+        acc: 100,
+    },
+    crunch: {
+        name: "Crunch",
+        power: 80,
+        type: "dark",
+        category: "physical",
+        acc: 100,
     },
     darkpulse: {
+        name: "Dark Pulse",
         power: 80,
         type: "dark",
         category: "special",
         acc: 100,
-        flinch_chance: 20
     },
     //fairy
     playrough: {
+        name: "Play Rough",
         power: 90,
         type: "fairy",
         category: "physical",
         acc: 90,
     },
     moonblast: {
+        name: "Moonblast",
         power: 95,
         type: "fairy",
         category: "special",
         acc: 100,
-        enemy_debuff: [
-            { "spa": {
-                    stage: 1,
-                    chance: 30
-                } }
-        ]
+    },
+    dazzlinggleam: {
+        name: "Moonblast",
+        power: 80,
+        type: "fairy",
+        category: "special",
+        acc: 100
     },
 };
 //# sourceMappingURL=moves.js.map

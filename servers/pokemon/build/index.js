@@ -26,6 +26,7 @@ const imageHandler_1 = require("./handlers/imageHandler");
 const teamHandler_1 = require("./handlers/teamHandler");
 const specificTeamHandler_1 = require("./handlers/specificTeamHandler");
 const specificBallHandler_1 = require("./handlers/specificBallHandler");
+const specificMoveHandler_1 = require("./handlers/specificMoveHandler");
 // const mongoEndpoint = "mongodb://localhost:27017/test"
 const mongoContainerName = "441mongopokemon";
 const mongoEndpoint = "mongodb://" + mongoContainerName + ":27017/pokemon";
@@ -93,6 +94,9 @@ app.route("/v1/team")
 app.route("/v1/team/:pokemonID")
     .get(RequestWrapper(specificTeamHandler_1.getSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
     .post(RequestWrapper(specificTeamHandler_1.postSpecificTeamHandler, { BattlePokemonModel: battlePokemonSchema_1.BattlePokemonModel }))
+    .all(methodNotAllowed);
+app.route("/v1/moves/:moveName")
+    .get(specificMoveHandler_1.getSpecificMoveHandler)
     .all(methodNotAllowed);
 // MongoDB connections
 const mongoDBConnect = () => {

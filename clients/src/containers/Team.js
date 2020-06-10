@@ -20,7 +20,7 @@ class Team extends React.Component {
         }
 
         const team = await response.json();
-  
+
         this.setState({
             pokemons: team
         })

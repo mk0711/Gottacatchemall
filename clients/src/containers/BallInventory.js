@@ -48,10 +48,6 @@ class BallInventory extends React.Component {
 }
 
 class Item extends React.Component {
-    constructor (props) {
-        super(props);
-    }
-
     renderItemCard = () => {
 
         const selected = this.props.selected === this.props.imageName;
