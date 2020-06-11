@@ -1,6 +1,7 @@
-### API Documentation
-GET /v1/pokedex returns all the pokemon and if they are caught by the user or not like this example:
+## API Documentation
 
+### /v1/pokedex
+GET returns all the pokemon and if they are caught by the user or not like this example:  
 response = {
 
     "bulbasaur": false,
@@ -14,11 +15,12 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
+---
 
-GET /v1/pokedex/{pokemonName}
+### /v1/pokedex/{pokemonName}
 
-returns the information of the pokemon if they are caught by the user. For example:
-
+GET
+returns the information of the pokemon if they are caught by the user. For example:  
 response = 
 {
 
@@ -52,28 +54,26 @@ response =
         "Grass"
     ],
     "catchRate": 190
-}
-
+}  
 Possible return status:
 * 200 (OK)
 * 400 (User never caught this pokemon but still requested it/ bad pokemon request)
 * 401 (Unauthorized)
 
+---
 
-GET /v1/pokedex/image/{pokemonName}
-
-returns the image of the requested pokemon as a png
+### /v1/pokedex/image/{pokemonName}  
+GET returns the image of the requested pokemon as a png  
 
 Possible return status:
 * 200 (OK)
 * 400 (no image found from the query parameter)
 
+---
 
-GET /v1/encounter
-
-player encounter a pokemon so that they can catch it. Until the player run away/ catch said pokemon you will
-keep encountering the same pokemon. Each pokemon has a different rarity, the lower the rarity the harder it is to encounter said pokemon. For example:
-
+### /v1/encounter  
+GET player encounter a pokemon so that they can catch it. Until the player run away/ catch said pokemon you will
+keep encountering the same pokemon. Each pokemon has a different rarity, the lower the rarity the harder it is to encounter said pokemon. For example:  
 response = 
 {
 
@@ -86,10 +86,10 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
+---
 
-GET /v1/runaway
-
-player run away from a pokemon, removing themselves from any encounters they may have had.
+### /v1/runaway  
+GET player run away from a pokemon, removing themselves from any encounters they may have had.  
 
 Possible return status:
 * 200 (OK)
@@ -97,11 +97,10 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
+---
 
-GET /v1/catch/{pokemonName}
-
-player tries to catch a pokemon. Remove player from any encounter if they succeed. For example:
-
+### /v1/catch/{pokemonName}  
+GET player tries to catch a pokemon. Remove player from any encounter if they succeed. For example:  
 response =
 {
 
@@ -114,11 +113,10 @@ Possible return status:
 * 400 (Not in encounter with any pokemon/ in a different encounter)
 * 401 (Unauthorized)
 
+---
 
-GET /v1/inventory
-
-show the current inventory the player has. Right now only support different types of balls
-
+### /v1/inventory  
+GET show the current inventory the player has. Right now only support different types of balls  
 response = {
 
     "pokeball": 100,
@@ -131,11 +129,10 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
+---
 
-GET /v1/items/{itemName} 
-
-show the details of a certain type of item. For example:
-
+### /v1/items/{itemName}   
+GET show the details of a certain type of item. For example:  
 response =
 {
 
@@ -150,28 +147,29 @@ Possible return status:
 * 401 (Unauthorized)
 * 400 (Bad request/ query parameter)
 
-GET /v1/items/image/{itemName}
+---
 
-returns the image of the requested ball as a png
+### /v1/items/image/{itemName}  
+GET returns the image of the requested ball as a png  
 
 Possible return status:
 * 200 (OK)
 * 400 (no image found from the query parameter)
 
+---
 
-GET /v1/team
-
-show all the pokemon the current user has caught
+### /v1/team  
+GET show all the pokemon the current user has caught
 
 Possible return status:
 * 200 (OK)
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
+---
 
-GET /v1/team/{pokemonID}
-
-show the specific pokemon of a user
+### /v1/team/{pokemonID}  
+GET show the specific pokemon of a user
 
 Possible return status:
 * 200 (OK)
@@ -179,10 +177,8 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
-POST /v1/team/{pokemonID}
-
-change the nickname of a pokemon in your team or let a pokemon in your team use an item. For example:
-
+POST 
+change the nickname of a pokemon in your team or let a pokemon in your team use an item. For example:  
 request = 
 {
 
@@ -196,15 +192,21 @@ Possible return status:
 * 401 (Unauthorized)
 * 500 (Internal Server Error)
 
-GET /v1/moves/moveName
+---
 
-See specific details of a move. For example
-
+### /v1/moves/moveName  
+GET See specific details of a move. For example
 response = {
-    
+
     name: "Slash",
     power: 70,
     type: "normal",
     category: "physical",
     acc: 100
 }
+
+Possible return status:
+* 200 (OK)
+* 400 (the move user requested is not valid)
+* 401 (Unauthorized)
+* 500 (Internal Server Error)
