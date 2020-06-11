@@ -116,7 +116,7 @@ Possible return status:
 ---
 
 ### /v1/inventory  
-GET show the current inventory the player has. Right now only support different types of balls  
+GET show the current inventory the player has.  
 response = {
 
     "pokeball": 100,
